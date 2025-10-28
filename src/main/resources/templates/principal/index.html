@@ -1,0 +1,36 @@
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org"
+    xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+
+<head>
+    <title>index</title>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" th:href="@{/css/estiloprincipal.css}"/>
+</head>
+
+<body>
+    <div class="container">
+        <header>
+            <h1>Ventana principal</h1>
+        </header>
+        <p th:text="${mensaje}"></p>
+        <ul>
+            <li th:each="li : ${listaenum}"
+                th:text="${li}"></li> 
+        </ul>
+        <nav>
+            <a th:href="@{/ventanacliente}" th:text="${'Registrar clientes'}">Ventana cliente</a>
+            <a th:href="@{/ventanaempleado}" th:text="${'Registrar empleado'}">Ventana empleado</a>
+            <a th:href="@{/ventanaofertas}" th:text="${'Registrar oferta'}">Ventana ofertas</a>
+            <a th:href="@{/ventanaservicio}" th:text="${'Registrar servicio'}">Ventana servicio</a>
+            <a th:href="@{/prueba}" th:text="${'Realizar prueba'}">Ventana prueba</a>
+        </nav>
+        <footer>
+             <span>&copy; 2025 - miguel.arango@tpdindustrial.co</span>
+        </footer>
+    </div>
+
+
+</body>
+
+</html>

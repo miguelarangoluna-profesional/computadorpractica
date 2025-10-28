@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" 
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Formulario registro cliente</title>
+    <link rel="stylesheet" th:href="@{/css/estiloindex.css}">
+</head>
+
+<body>
+    <div class="container">
+        <header>
+            <h1>FORMULARIO CLIENTES</h1>
+        </header>
+        <section>
+            <div class="campo1">
+                <h2>Registro de cliente</h2>
+                <a th:href="@{/}">Volver</a>
+            </div>
+            <div class="campo2">
+                <form th:action="@{/guardarcliente}" th:object="${cliente}" method="post">
+                    <input type="hidden" th:field="*{codigo}" />
+
+                    <div>
+                        <label>Razón social</label>
+                        <input type="text" th:field="*{razonsocial}" />
+                        <span th:if="${#fields.hasErrors('razonsocial')}" th:errors="*{razonsocial}"></span>
+                    </div>
+
+                    <div>
+                        <label>NIT</label>
+                        <input type="number" th:field="*{nit}" />
+                    </div>
+
+                    <div>
+                        <label>Contacto</label>
+                        <input type="text" th:field="*{contacto}" />
+                    </div>
+
+                    <div>
+                        <label>Dirección</label>
+                        <input type="text" th:field="*{direccion}" />
+                    </div>
+
+                    <div>
+                        <label>Correo</label>
+                        <input type="text" th:field="*{correo}" />
+                    </div>
+
+                    <div>
+                        <label>Celular</label>
+                        <input type="number" th:field="*{celular}" />
+                    </div>
+
+                    <input type="submit" value="Guardar" />
+                </form>
+            </div>
+        </section>
+    </div>
+</body>
+
+</html>

@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org"
+    xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Formulario registro ofertas</title>
+    <link rel="stylesheet" th:href="@{/css/estilolista.css}">
+</head>
+
+<body>
+    <div class="container">
+        <header>
+            <h1>Formulario de Registro de Ofertas</h1>
+        </header>
+
+        <section>
+            <div class="campo1">
+                <h2>Datos de la oferta</h2>
+                <a th:href="@{/}" class="volver">← Volver al inicio</a>
+            </div>
+            
+            <<form th:action="@{action}">
+                
+            </form>
+
+            <div class="campo2">
+                <form th:action="@{/guardaroferta}" th:object="${oferta}" method="post">
+                    <input type="hidden" th:field="*{codigo}" />
+
+                    <div class="form-group">
+                        <label>Descripción</label>
+                        <input type="text" th:field="*{descripcion}" placeholder="Ingrese descripción de la oferta" />
+                        <span class="error" th:if="${#fields.hasErrors('descripcion')}"
+                            th:errors="*{descripcion}"></span>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Forma de pago</label>
+                        <input type="number" th:field="*{formapago}" placeholder="Ejemplo: 30, 60, 90" />
+                        <span class="error" th:if="${#fields.hasErrors('formapago')}" th:errors="*{formapago}"></span>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Fecha de creación</label>
+                        <input type="text" th:field="*{fechacreacion}" placeholder="YYYY-MM-DD" />
+                        <span class="error" th:if="${#fields.hasErrors('fechacreacion')}"
+                            th:errors="*{fechacreacion}"></span>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Condición comercial</label>
+                        <input type="text" th:field="*{codicioncomercial}"
+                            placeholder="Ingrese la condición comercial" />
+                        <span class="error" th:if="${#fields.hasErrors('codicioncomercial')}"
+                            th:errors="*{codicioncomercial}"></span>
+                    </div>
+
+                    <div class="form-group">
+                        <select>
+                            <option>Seleccione cliente</option>
+                            <option th:each="cli : ${listacliente}"
+                                    th:text="${cli.razonsocial}"
+                                    th:value="${cli.codigo}">
+                            </option>
+                        </select>
+                    </div>
+                    
+                    
+                    <div class="form-group">
+                        <select>
+                            <option>Seleccione empleados</option>
+                            <option th:each="emp : ${listaempleado}"
+                                    th:text="${emp.cargo}"
+                                    th:value="${emp.codigo}">
+                            </option>
+                        </select>
+                    </div>
+
+                    <div class="form-actions">
+                        <input type="submit" value="Guardar" />
+                    </div>
+                </form>
+            </div>
+        </section>
+    </div>
+</body>
+
+</html>

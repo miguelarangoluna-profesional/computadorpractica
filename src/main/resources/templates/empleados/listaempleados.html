@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Lista de empleados</title>
+    <link rel="stylesheet" th:href="@{/css/estilolistaempleados.css}">
+</head>
+
+<body>
+    <div class="container">
+        <h1>Lista de Empleados</h1>
+        <div class="acciones-superiores">
+            <a th:text="${'Agregar empleado'}" th:href="@{/addempleado}"></a>
+            <a th:href="@{/}">Volver</a>
+        </div>
+
+        <div th:if="${listaempleados != null and !listaempleados.empty}">
+            <table border="1">
+                <thead>
+                    <tr>
+                        <th>Ítem</th>
+                        <th>Cargo</th>
+                        <th>Correo</th>
+                        <th>Salario</th>
+                        <th>Celular</th>
+                        <th>Acciones</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr th:each="emp : ${listaempleados}">
+                        <td data-label="Ítem" th:text="${emp.codigo}"></td>
+                        <td data-label="Razón Social" th:text="${emp.cargo}"></td>
+                        <td data-label="NIT" th:text="${emp.correo}"></td>
+                        <td data-label="Contacto" th:text="${emp.salario}"></td>
+                        <td data-label="Celular" th:text="${emp.celular}"></td>
+                        <td data-label="Acciones">
+                            <a th:href="@{'/editarcliente/' + ${emp.codigo}}">Modificar</a>
+                            <a th:href="@{'/eliminarcliente/' + ${emp.codigo}}"
+                               onclick="return confirm('¿Está seguro de eliminar este empleado?')">Eliminar</a>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <div th:if="${listaempleados == null or listaempleados.empty}" class="vacio">
+            <p>La lista de empleados se encuentra vacía</p>
+        </div>
+    </div>
+</body>
+
+</html>

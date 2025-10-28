@@ -1,0 +1,122 @@
+/* Estilo general */
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: linear-gradient(135deg, #f6d365, #fda085);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    margin: 0;
+}
+
+/* Contenedor principal */
+.container {
+    background: #fff;
+    width: 600px;
+    border-radius: 12px;
+    box-shadow: 0 5px 25px rgba(0, 0, 0, 0.2);
+    padding: 25px 40px;
+}
+
+/* Encabezado */
+header {
+    text-align: center;
+    border-bottom: 3px solid #f6b93b;
+    margin-bottom: 25px;
+}
+
+header h1 {
+    color: #333;
+    font-size: 1.8em;
+    margin-bottom: 10px;
+}
+
+/* Títulos y enlace */
+.campo1 {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 15px;
+}
+
+.campo1 h2 {
+    color: #444;
+    font-size: 1.2em;
+}
+
+.campo1 .volver {
+    text-decoration: none;
+    background: #f6b93b;
+    color: #fff;
+    padding: 8px 16px;
+    border-radius: 6px;
+    transition: 0.3s;
+    font-weight: bold;
+}
+
+.campo1 .volver:hover {
+    background: #e58e26;
+}
+
+/* Formulario */
+form {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+}
+
+label {
+    font-weight: bold;
+    margin-bottom: 5px;
+    color: #555;
+}
+
+input[type="text"],
+input[type="number"] {
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    font-size: 1em;
+    transition: border-color 0.3s;
+}
+
+input[type="text"]:focus,
+input[type="number"]:focus {
+    border-color: #f6b93b;
+    outline: none;
+}
+
+/* Errores de validación */
+.error {
+    color: #d63031;
+    font-size: 0.9em;
+    margin-top: 4px;
+}
+
+/* Botón */
+.form-actions {
+    text-align: center;
+    margin-top: 10px;
+}
+
+input[type="submit"] {
+    background: #f6b93b;
+    border: none;
+    color: white;
+    padding: 12px 30px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 1em;
+    font-weight: bold;
+    transition: background 0.3s, transform 0.2s;
+}
+
+input[type="submit"]:hover {
+    background: #e58e26;
+    transform: scale(1.05);
+}

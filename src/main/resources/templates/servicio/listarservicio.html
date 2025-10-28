@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Lista de ofertas</title>
+    <link rel="stylesheet" th:href="@{/css/estilolistaempleados.css}">
+</head>
+
+<body>
+    <div class="container">
+        <h1>Lista de servicio</h1>
+        <div class="acciones-superiores">
+            <a th:text="${'Agregar servicio'}" th:href="@{/addservicio}"></a>
+            <a th:href="@{/}">Volver</a>
+        </div>
+
+        <div th:if="${listaservicio != null and !listaservicio.empty}">
+            <table border="1">
+                <thead>
+                    <tr>
+                        <th>Ítem</th>
+                        <th>Descripcion</th>
+                        <th>Fecha creación</th>
+                        <th>Valor unitario</th>
+                        <th>Acciones</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr th:each="ser : ${listaservicio}">
+                        <td data-label="Ítem" th:text="${ser.codigo}"></td>
+                        <td data-label="Razón Social" th:text="${ser.descripcion}"></td>
+                        <td data-label="NIT" th:text="${ser.fechacreacion}"></td>
+                        <td data-label="Contacto" th:text="${ser.valorunitario}"></td>
+                        <td data-label="Acciones">
+                            <a th:href="@{'/editarservicio/' + ${ser.codigo}}">Modificar</a>
+                            <a th:href="@{/eliminarservicio(codigo=${ser.codigo})}"
+                               onclick="return confirm('¿Está seguro de eliminar este servicio?')">Eliminar</a>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <div th:if="${listaservicio == null or listaservicio.empty}" class="vacio">
+            <p>La lista de servicio se encuentra vacía</p>
+        </div>
+    </div>
+</body>
+
+</html>

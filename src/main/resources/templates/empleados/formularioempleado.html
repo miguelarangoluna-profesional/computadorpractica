@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" 
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Formulario registro cliente</title>
+    <link rel="stylesheet" th:href="@{/css/estilolistaempleados.css}">
+</head>
+
+<body>
+    <div class="container">
+        <header>
+            <h1>FORMULARIO EMPLEADO</h1>
+        </header>
+        <section>
+            <div class="campo1">
+                <h2>Registro de cliente</h2>
+                <a th:href="@{/}">Volver</a>
+            </div>
+            <div class="campo2">
+                <form th:action="@{/guardarempleado}" th:object="${empleado}" method="post">
+                    <input type="hidden" th:field="*{codigo}" />
+
+                    <div>
+                        <label>Cargo</label>
+                        <input type="text" th:field="*{cargo}" />
+                        <span th:if="${#fields.hasErrors('cargo')}" th:errors="*{cargo}"></span>
+                    </div>
+
+                    <div>
+                        <label>Salario</label>
+                        <input type="number" th:field="*{salario}" />
+                         <span th:if="${#fields.hasErrors('salario')}" th:errors="*{salario}"></span>
+                    </div>
+
+                    <div>
+                        <label>Celular</label>
+                        <input type="text" th:field="*{celular}" />
+                         <span th:if="${#fields.hasErrors('celular')}" th:errors="*{celular}"></span>
+                    </div>
+
+                    <div>
+                        <label>Correo</label>
+                        <input type="text" th:field="*{correo}" />
+                        <span th:if="${#fields.hasErrors('correo')}" th:errors="*{correo}"></span>
+                    </div>
+
+                    <div>
+                        <label>Celular</label>
+                        <input type="number" th:field="*{celular}" />
+                         <span th:if="${#fields.hasErrors('celular')}" th:errors="*{celular}"></span>
+                    </div>
+
+                    <input type="submit" value="Guardar" />
+                </form>
+            </div>
+        </section>
+    </div>
+</body>
+
+</html>
