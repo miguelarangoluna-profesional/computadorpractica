@@ -1,7 +1,3 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Interface.java to edit this template
- */
 package tpdindustrial.tpdindustrial.service;
 
 import java.util.List;
@@ -19,4 +15,8 @@ public interface ofertaservice {
     public void eliminaroferta(oferta o);
     
     public oferta buscaroferta(oferta o);
+    
+    public void procesodetalle(String servicio, int cantidad);
+    
+    public List<Object> recibiendoObjetos(String servicio);
 }

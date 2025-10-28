@@ -5,14 +5,14 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Formulario registro ofertas</title>
+    <title>Formulario ofertas</title>
     <link rel="stylesheet" th:href="@{/css/estilolista.css}">
 </head>
 
 <body>
     <div class="container">
         <header>
-            <h1>Formulario de Registro de Ofertas</h1>
+            <h1>Formulario Ofertas</h1>
         </header>
 
         <section>
@@ -31,8 +31,23 @@
                 <input type="submit" value="Agregar"/>
             </form>
 
-            <th:block th:if="${listadeservicio}">
-                
+            <th:block th:if="${listadeservicioseleccionado != null and !listadeservicioseleccionado.empty}">
+                <table border="1">
+                    <thead>
+                        <tr>
+                            <td>Items</td>
+                            <td>Descripcion</td>
+                            <td>Cantidad</td>
+                            <td>Precio unitario</td>
+                            <td>Valor total</td>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr th:each="ls:${listadeservicioseleccionado}">
+                            <td th:text="${ls}"></td>
+                        </tr>
+                    </tbody>
+                </table>
             </th:block>
             
             <div class="campo2">

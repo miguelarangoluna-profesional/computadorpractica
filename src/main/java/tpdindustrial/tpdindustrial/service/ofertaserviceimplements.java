@@ -4,6 +4,7 @@
  */
 package tpdindustrial.tpdindustrial.service;
 
+import java.util.ArrayList;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -30,13 +31,13 @@ public class ofertaserviceimplements implements ofertaservice{
     }
 
     @Override
-    @Transactional
+    @Transactional()
     public void guardaroferta(oferta o) {
         odao.save(o);
     }
 
     @Override
-    @Transactional
+    @Transactional()
     public void eliminaroferta(oferta o) {
         odao.delete(o);
     }
@@ -48,5 +49,25 @@ public class ofertaserviceimplements implements ofertaservice{
     }
     
     //Metodos y lógica del negocio
+
+    List<Object> listaobjecto = new ArrayList<>();
+    
+    @Override
+    public void procesodetalle(String servicio, int cantidad) {
+        listaobjecto.add(servicio);
+        
+    }
+
+    @Override
+    public List<Object> recibiendoObjetos(String ser) {
+        System.out.println("ser: ===> "+ser);
+        int codigo = Integer.parseInt(ser);
+        
+        
+        listaobjecto.add(ser);
+        return listaobjecto;
+    }
+    
+    
     
 }

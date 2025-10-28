@@ -1,6 +1,8 @@
 package tpdindustrial.tpdindustrial.web;
 
 import jakarta.validation.Valid;
+import java.util.ArrayList;
+import java.util.List;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -21,58 +23,63 @@ import tpdindustrial.tpdindustrial.service.servicioservice;
  *
  * @author USUARIO
  */
-
 @Controller
 @Slf4j
 public class controladoroferta {
-    
+
+    List<Object> listaobjeto = new ArrayList<>();
+
     @Autowired
     private ofertaservice oferservice;
-    
+
     @Autowired
     private clienteservice cliservice;
-    
+
     @Autowired
     private empleadoservice empservice;
-    
+
     @Autowired
     private servicioservice sservice;
-    
+
     @GetMapping("/ventanaofertas")
-    public String ventanaoferta(){
+    public String ventanaoferta() {
         return "redirect:/listaofertas";
     }
-    
+
     @GetMapping("/listaofertas")
-    public String listaofert(){
+    public String listaofert() {
         return "ofertas/listaofertas";
     }
-    
-    
+
     @GetMapping("/addoferta")
-    public String agregarofertas(oferta o,Model modelo){
+    public String agregarofertas(oferta o, Model modelo) {
         var listacliente = cliservice.listarcliente();
         var listaempleado = empservice.listarempleado();
         var listaservicio = sservice.listarservicio();
         modelo.addAttribute("listadeservicio", listaservicio);
         modelo.addAttribute("listacliente", listacliente);
-        modelo.addAttribute("listaempleado",listaempleado);
+        modelo.addAttribute("listaempleado", listaempleado);
         return "ofertas/formularioferta";
-    } 
-      
-   @GetMapping("/agregarservicioaoferta")
-   public String agregarservicioferta(
-           RedirectAttributes redirectattributes,
-           @RequestParam("seleccionservicio") String ser){
-       String servicio = ser;
-       System.out.println("el servicio seleccionado es: "+ser);
-       String m = "hola";
-       redirectattributes.addFlashAttribute("mensaje", "mensaje desde el controladoroferta metodo agregarservicioaoferta");
-       return "redirect:/addoferta";
-   }
-   
-   public void mensaje(){
-       
-   }
+    }
+
+    @GetMapping("/agregarservicioaoferta")
+    public String agregarservicioferta(
+            RedirectAttributes redirectattributes,
+            @RequestParam("seleccionservicio") String ser,
+            Model modelo,oferta o) {    
+        listaobjeto = oferservice.recibiendoObjetos(ser);
+        System.out.println("oferservice " + oferservice);
+        String servicio = ser;
+        System.out.println("el servicio seleccionado es: " + ser);
+        redirectattributes.addFlashAttribute("mensaje", "mensaje desde el controladoroferta metodo agregarservicioaoferta");
+        listaobjeto.forEach(System.out::println);
+        var listacliente = cliservice.listarcliente();
+        var listaempleado = empservice.listarempleado();
+        var listaservicio = sservice.listarservicio();
+        modelo.addAttribute("listadeservicio", listaservicio);
+        modelo.addAttribute("listacliente", listacliente);
+        modelo.addAttribute("listaempleado", listaempleado);
+        modelo.addAttribute("listadeservicioseleccionado", listaobjeto);
+        return "ofertas/formularioferta";
+    }
 }
- 
