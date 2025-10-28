@@ -8,11 +8,13 @@ import org.springframework.ui.Model;
 import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import tpdindustrial.tpdindustrial.domain.oferta;
 import tpdindustrial.tpdindustrial.domain.servicio;
 import tpdindustrial.tpdindustrial.service.clienteservice;
 import tpdindustrial.tpdindustrial.service.empleadoservice;
 import tpdindustrial.tpdindustrial.service.ofertaservice;
+import tpdindustrial.tpdindustrial.service.servicioservice;
 
 /**
  *
@@ -31,6 +33,9 @@ public class controladoroferta {
     
     @Autowired
     private empleadoservice empservice;
+    
+    @Autowired
+    private servicioservice sservice;
     
     @GetMapping("/ventanaofertas")
     public String ventanaoferta(){
@@ -51,6 +56,12 @@ public class controladoroferta {
         modelo.addAttribute("listaempleado",listaempleado);
         return "ofertas/formularioferta";
     }
-    
+      
+   @GetMapping("/agregarservicioaoferta")
+   public String agregarservicioferta(RedirectAttributes redirectattributes){
+       String m = "hola";
+       redirectattributes.addFlashAttribute("mensaje", "mensaje desde el controladoroferta metodo agregarservicioaoferta");
+       return "redirect:/";
+   }
 }
  
