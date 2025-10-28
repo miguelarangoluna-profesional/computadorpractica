@@ -8,6 +8,7 @@ import org.springframework.ui.Model;
 import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import tpdindustrial.tpdindustrial.domain.oferta;
 import tpdindustrial.tpdindustrial.domain.servicio;
@@ -52,16 +53,26 @@ public class controladoroferta {
     public String agregarofertas(oferta o,Model modelo){
         var listacliente = cliservice.listarcliente();
         var listaempleado = empservice.listarempleado();
+        var listaservicio = sservice.listarservicio();
+        modelo.addAttribute("listadeservicio", listaservicio);
         modelo.addAttribute("listacliente", listacliente);
         modelo.addAttribute("listaempleado",listaempleado);
         return "ofertas/formularioferta";
-    }
+    } 
       
    @GetMapping("/agregarservicioaoferta")
-   public String agregarservicioferta(RedirectAttributes redirectattributes){
+   public String agregarservicioferta(
+           RedirectAttributes redirectattributes,
+           @RequestParam("seleccionservicio") String ser){
+       String servicio = ser;
+       System.out.println("el servicio seleccionado es: "+ser);
        String m = "hola";
        redirectattributes.addFlashAttribute("mensaje", "mensaje desde el controladoroferta metodo agregarservicioaoferta");
-       return "redirect:/";
+       return "redirect:/addoferta";
+   }
+   
+   public void mensaje(){
+       
    }
 }
  

@@ -22,7 +22,7 @@
             </div>
             
             <form th:action="@{agregarservicioaoferta}" method="get">
-                <select>
+                <select name="seleccionservicio">
                     <option>Seleccione servicio</option>
                     <option th:each="listaser : ${listadeservicio}"
                             th:text="${listaser.descripcion}"
@@ -31,6 +31,10 @@
                 <input type="submit" value="Agregar"/>
             </form>
 
+            <th:block th:if="${listadeservicio}">
+                
+            </th:block>
+            
             <div class="campo2">
                 <form th:action="@{/guardaroferta}" th:object="${oferta}" method="post">
                     <input type="hidden" th:field="*{codigo}" />
