@@ -21,8 +21,14 @@
                 <a th:href="@{/}" class="volver">← Volver al inicio</a>
             </div>
             
-            <<form th:action="@{action}">
-                
+            <form th:action="@{action}" method="get">
+                <select>
+                    <option>Seleccione servicio</option>
+                    <option th:each="listaser : ${listadeservicio}"
+                            th:text="${listaser.descripcion}"
+                            th:value="${listaser.codigo}"></option>
+                </select>
+                <input type="submit" value="Agregar"/>
             </form>
 
             <div class="campo2">
