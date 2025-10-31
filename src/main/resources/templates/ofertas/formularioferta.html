@@ -28,6 +28,7 @@
                             th:text="${listaser.descripcion}"
                             th:value="${listaser.codigo}"></option>
                 </select>
+                <input type="number" name="cantidad" placeholder="Digite cantidad"/>
                 <input type="submit" value="Agregar"/>
             </form>
 
@@ -40,11 +41,19 @@
                             <td>Cantidad</td>
                             <td>Precio unitario</td>
                             <td>Valor total</td>
+                            <td>Acciones</td>
                         </tr>
                     </thead>
                     <tbody>
-                        <tr th:each="ls:${listadeservicioseleccionado}">
-                            <td th:text="${ls}"></td>
+                        <tr th:each="ls,contador:${listadeservicioseleccionado}">
+                            <td th:text="${contador.index +1}"></td>
+                            <td th:text="${ls[1]}"></td>
+                            <td th:text="${ls[2]}"></td>
+                            <td th:text="${ls[3]}"></td>
+                            <td th:text="${ls[4]}"></td>
+                            <td>
+                                <a th:href="@{/eliminarseleccion}" th:text="${'Eliminar selección'}">Eliminar</a>
+                            </td>
                         </tr>
                     </tbody>
                 </table>
@@ -69,7 +78,7 @@
 
                     <div class="form-group">
                         <label>Fecha de creación</label>
-                        <input type="text" th:field="*{fechacreacion}" placeholder="YYYY-MM-DD" />
+                        <input type="date" th:field="*{fechacreacion}" placeholder="YYYY-MM-DD" />
                         <span class="error" th:if="${#fields.hasErrors('fechacreacion')}"
                             th:errors="*{fechacreacion}"></span>
                     </div>
@@ -83,7 +92,7 @@
                     </div>
 
                     <div class="form-group">
-                        <select>
+                        <select name="cod_cliente">
                             <option>Seleccione cliente</option>
                             <option th:each="cli : ${listacliente}"
                                     th:text="${cli.razonsocial}"
@@ -94,7 +103,7 @@
                     
                     
                     <div class="form-group">
-                        <select>
+                        <select name="cod_empleado">
                             <option>Seleccione empleados</option>
                             <option th:each="emp : ${listaempleado}"
                                     th:text="${emp.cargo}"

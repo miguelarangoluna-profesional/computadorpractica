@@ -18,5 +18,9 @@ public interface relacionofertaservicioService {
     
     public void eliminarelacionofertaservicio(relacionofertaservicio ros);
     
+    public void guardarlistarelacionofertaservicio(List<relacionofertaservicio> glros);
+    
     public relacionofertaservicio buscarelacionofertaservicio(relacionofertaservicio ros);
+    
+    public void detalleofertaservicioclienteempleado(List<Object> carrito,int code_cliente,int code_empleado);
 }

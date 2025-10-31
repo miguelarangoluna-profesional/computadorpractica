@@ -1,18 +1,24 @@
 package tpdindustrial.tpdindustrial.web;
 
+import jakarta.servlet.http.HttpSession;
 import jakarta.validation.Valid;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.SessionAttributes;
+import org.springframework.web.bind.support.SessionStatus;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import tpdindustrial.tpdindustrial.domain.oferta;
+import tpdindustrial.tpdindustrial.domain.relacionofertaservicio;
 import tpdindustrial.tpdindustrial.domain.servicio;
 import tpdindustrial.tpdindustrial.service.clienteservice;
 import tpdindustrial.tpdindustrial.service.empleadoservice;
@@ -24,6 +30,7 @@ import tpdindustrial.tpdindustrial.service.servicioservice;
  * @author USUARIO
  */
 @Controller
+@SessionAttributes("lista1")
 @Slf4j
 public class controladoroferta {
 
@@ -53,33 +60,76 @@ public class controladoroferta {
 
     @GetMapping("/addoferta")
     public String agregarofertas(oferta o, Model modelo) {
-        var listacliente = cliservice.listarcliente();
-        var listaempleado = empservice.listarempleado();
-        var listaservicio = sservice.listarservicio();
-        modelo.addAttribute("listadeservicio", listaservicio);
-        modelo.addAttribute("listacliente", listacliente);
-        modelo.addAttribute("listaempleado", listaempleado);
+        modelo.addAttribute("listadeservicio", sservice.listarservicio());
+        modelo.addAttribute("listacliente", cliservice.listarcliente());
+        modelo.addAttribute("listaempleado", empservice.listarempleado());
         return "ofertas/formularioferta";
+    }
+
+    @ModelAttribute("lista1")
+    public List<Object> crearcarrito() {
+        return new ArrayList<>();
     }
 
     @GetMapping("/agregarservicioaoferta")
     public String agregarservicioferta(
             RedirectAttributes redirectattributes,
             @RequestParam("seleccionservicio") String ser,
-            Model modelo,oferta o) {    
-        listaobjeto = oferservice.recibiendoObjetos(ser);
+            @RequestParam("cantidad") int cant,
+            @ModelAttribute("lista1") List<Object> carrito,
+            @RequestParam Map<String,String> listamap,
+            Model modelo, oferta o) {
+        System.out.println("Lista antes de quitar un atributo de lisamap: "+listamap);
+        System.out.println("carrito antes " + carrito);
+        oferservice.recibiendoObjetos(carrito,ser, cant);
+        System.out.println("carrito despues " + carrito);
         System.out.println("oferservice " + oferservice);
         String servicio = ser;
         System.out.println("el servicio seleccionado es: " + ser);
         redirectattributes.addFlashAttribute("mensaje", "mensaje desde el controladoroferta metodo agregarservicioaoferta");
         listaobjeto.forEach(System.out::println);
-        var listacliente = cliservice.listarcliente();
-        var listaempleado = empservice.listarempleado();
-        var listaservicio = sservice.listarservicio();
-        modelo.addAttribute("listadeservicio", listaservicio);
-        modelo.addAttribute("listacliente", listacliente);
-        modelo.addAttribute("listaempleado", listaempleado);
-        modelo.addAttribute("listadeservicioseleccionado", listaobjeto);
+        modelo.addAttribute("listadeservicio", sservice.listarservicio());
+        modelo.addAttribute("listacliente", cliservice.listarcliente());
+        modelo.addAttribute("listaempleado",empservice.listarempleado());
+        modelo.addAttribute("listadeservicioseleccionado", carrito);
+        System.out.println("carrito "+carrito);
+        listamap.remove("cantidad");
+        System.out.println("Lista despues de quitar un atributo de lisamap: "+listamap);
         return "ofertas/formularioferta";
     }
+    
+    @GetMapping("/limpiar")
+    public String limpiar(HttpSession sesion){
+        sesion.removeAttribute("lista1");
+        return "redirect:/";
+    }    
+        
+    @GetMapping("/limpiar1")
+    public String limpiar1(SessionStatus status){
+        status.setComplete();
+        return "redirect:/";
+    }   
+    
+    @PostMapping("/guardaroferta")
+    public String saveoferta(
+            oferta ofer,
+            @ModelAttribute("lista1") List<Object> carrito,
+            Model modelo,
+            @RequestParam("cod_cliente") String codecliente,
+            @RequestParam("cod_empleado") String codeempleado){
+        int codclient = Integer.parseInt(codecliente);
+        int codempleado= Integer.parseInt(codeempleado);
+        for(Object o: carrito){
+            
+        }
+        System.out.println("===========*****========");
+        System.out.println("oferta: "+ofer);
+        System.out.println("carrito: "+carrito);
+        System.out.println("Codigo cliente: "+codecliente);
+        System.out.println("Codigo empleado: "+codeempleado);
+        oferservice.registrarofertaydetalle(carrito, codclient, codempleado);
+        relacionofertaservicio ros = new relacionofertaservicio();
+        return "redirect:/";
+    }
+    
 }

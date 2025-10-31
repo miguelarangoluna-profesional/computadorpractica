@@ -12,4 +12,9 @@ public interface servicioservice {
     public void eliminarservicio(servicio s);
     
     public servicio buscarservicio(servicio s);
+    
+    //metodos para aplicar las consultas
+    
+    public List<servicio> buscarpordescripcion(String nombre);
+    
 }

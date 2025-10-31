@@ -1,0 +1,28 @@
+body{
+    background: gray;
+}
+
+.container{
+    width: 700px;
+    height: 600px;
+    border: solid 1px;
+    margin: 0 auto;
+}
+
+.element{
+    background: gold;
+    
+}
+
+nav{
+    border: solid 1px;
+    height: 20px;
+    display: flex;
+    justify-content: space-around;
+}
+main{
+    margin: 12px 0 12px 0;
+}
+form{
+    border: solid 1px;
+}

@@ -1,0 +1,45 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+
+    <head>
+        <title>Ventana test</title>
+        <meta charset="UTF-8"/>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+        <link rel="stylesheet" th:href="@{/css/estilostest.css}"/>
+    </head>
+    <body>
+    <div class="container">
+        <header>
+            <h1>ventana test</h1>
+        </header>
+        <nav><a href="">Enlace 1</a><a href="">Enlace 2</a><a th:href="@{/}" th:text="${'Volver'}">Volver</a></nav>
+        <main>
+            <form th:action="@{/agregarlistaopciones}" class="formulario" method="get">
+
+                <select name="serviciosmart">
+                    <option>Lista de servicios</option>
+                    <option th:each="ls : ${listaservicios}" th:text="|${ls.descripcion} - ${ls.segunparte}|"
+                        th:value="${ls.descripcion}"></option>
+                </select>
+
+               <div class="element">
+                <th:block th:each="ser : ${elementos}">
+                    <input th:attr="type='checkbox',name='servicio',value=${ser.codigo}" th:text="${ser.descripcion}"/>
+                </th:block>
+            </div>
+                <div class="selecionarea">
+                    <th:block th:each="elem : ${elementos1}">
+                        <input th:attr="type='checkbox',name='areasselecionadas',value=${elem}"
+                            th:text="${'Elementos: '}" />
+                    </th:block>
+                </div>
+                <div class="boton">
+                    <input type="submit" value="Agregar" />
+                </div>
+            </form>
+        </main>
+    </div>
+
+    </body>
+</html>

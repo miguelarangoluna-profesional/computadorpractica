@@ -10,20 +10,23 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import tpdindustrial.tpdindustrial.DAO.ofertaDAO;
+import tpdindustrial.tpdindustrial.domain.cliente;
+import tpdindustrial.tpdindustrial.domain.empleado;
 import tpdindustrial.tpdindustrial.domain.oferta;
+import tpdindustrial.tpdindustrial.domain.relacionofertaservicio;
+import tpdindustrial.tpdindustrial.domain.servicio;
 
 /**
  *
  * @author USUARIO
  */
 @Service
-public class ofertaserviceimplements implements ofertaservice{
+public class ofertaserviceimplements implements ofertaservice {
 
     //Metodos CRUD de la aplicación
-    
     @Autowired
     private ofertaDAO odao;
-    
+
     @Override
     @Transactional(readOnly = true)
     public List<oferta> listaroferta() {
@@ -47,27 +50,75 @@ public class ofertaserviceimplements implements ofertaservice{
     public oferta buscaroferta(oferta o) {
         return odao.findById(o.getCodigo()).orElse(null);
     }
-    
-    //Metodos y lógica del negocio
 
-    List<Object> listaobjecto = new ArrayList<>();
+    //Metodos y lógica del negocio adicionales
+    @Autowired
+    private servicioservice sservice;
+    
+    @Autowired
+    private clienteservice clientservice;
+    
+    @Autowired
+    private empleadoservice empleservice;
+
+    @Autowired
+    private relacionofertaservicioService rosservice;
+    
     
     @Override
-    public void procesodetalle(String servicio, int cantidad) {
-        listaobjecto.add(servicio);
-        
-    }
-
-    @Override
-    public List<Object> recibiendoObjetos(String ser) {
-        System.out.println("ser: ===> "+ser);
+    public void recibiendoObjetos(List<Object>carrito,String ser, int cantidad) {
+        System.out.println("ser: ===> " + ser);
         int codigo = Integer.parseInt(ser);
-        
-        
-        listaobjecto.add(ser);
-        return listaobjecto;
+        servicio s = new servicio();
+        s.setCodigo(codigo);
+        s = sservice.buscarservicio(s);
+        s.getDescripcion();
+        s.getValorunitario();
+        int total = s.getValorunitario()*cantidad;
+        List<Object> detalle = new ArrayList<>();
+        detalle.add(s.getCodigo());
+        detalle.add(s.getDescripcion());
+        detalle.add(cantidad);
+        detalle.add(s.getValorunitario());
+        detalle.add(total);
+        carrito.add(detalle);
     }
-    
+
+    @Override
+    public void registrarofertaydetalle(List<Object> carrito, int codecliente, int codempleado) {
+        List<Object> detalleoferta = new ArrayList<>();
+        List<relacionofertaservicio> detalleofertaservicio= new ArrayList<>();
+        relacionofertaservicio ros = new relacionofertaservicio();
+        cliente c = new cliente();
+        empleado e = new empleado();
+        servicio s = new servicio();
+        sservice.buscarservicio(s);
+        c.setCodigo(codecliente);
+        e.setCodigo(codempleado);
+        c = clientservice.buscarcliente(c);
+        e = empleservice.buscarempleado(e);
+        List<servicio> ls = new ArrayList<>();
+        for(Object o:carrito){
+            List<Object> fila = (List<Object>) o;
+            Integer id = (Integer) fila.get(0);
+            String nombreservicio = (String) fila.get(1);
+            s.setDescripcion(nombreservicio);
+            System.out.println("nombreservicio "+nombreservicio);
+            ls= sservice.buscarpordescripcion(nombreservicio);
+            ls.forEach(System.out::println);
+            Integer cantidad = (Integer) fila.get(2);
+            Integer preciounitario = (Integer) fila.get(3);
+            Integer total = (Integer) fila.get(4);
+            fila.forEach(System.out::println);
+            ros.setCantidad(cantidad);
+//            ros.setServicio();
+//            ros.setValortotal(total); 
+            detalleofertaservicio.add(ros);
+            System.out.println("objeto: =====>>> "+o.toString());
+        }
+        System.out.println("ros: "+ros);
+        System.out.println("los datos recibidos son: "+carrito+" - "+" Informacion cliente: "+c+" informacion empleado: "+e);
+    }
     
     
 }

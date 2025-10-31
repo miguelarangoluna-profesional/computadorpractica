@@ -4,6 +4,7 @@
  */
 package tpdindustrial.tpdindustrial.DAO;
 
+import java.util.List;
 import org.springframework.data.jpa.repository.JpaRepository;
 import tpdindustrial.tpdindustrial.domain.servicio;
 
@@ -12,5 +13,8 @@ import tpdindustrial.tpdindustrial.domain.servicio;
  * @author USUARIO
  */
 public interface serviciosDAO extends JpaRepository<servicio, Integer>{
+    
+    
+    List<servicio> findByDescripcion(String descripcion);
     
 }

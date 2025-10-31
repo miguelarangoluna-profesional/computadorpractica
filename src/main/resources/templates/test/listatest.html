@@ -12,14 +12,14 @@
 
 <body>
     <div class="container">
-        <h1>Lista de Ofertas</h1>
+        <h1>Lista test</h1>
         <div class="acciones-superiores">
-            <a th:text="${'Agregar ofertas'}" th:href="@{/addoferta}"></a>
+            <a th:text="${'Formulario test'}" th:href="@{/agregartest}"></a>
             <a th:href="@{/}">Volver</a>
             <a th:href="@{/limpiar1}">Limpiar</a>
         </div>
 
-        <div th:if="${listaofertas != null and !listaofertas.empty}">
+        <div th:if="${listadecomponentes != null and !listadecomponentes.empty}">
             <table border="1">
                 <thead>
                     <tr>
@@ -32,15 +32,15 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <tr th:each="ofer : ${listaofertas}">
-                        <td data-label="Ítem" th:text="${ofer.codigo}"></td>
-                        <td data-label="Razón Social" th:text="${ofer.descripcion}"></td>
-                        <td data-label="NIT" th:text="${ofer.formapago}"></td>
-                        <td data-label="Contacto" th:text="${ofer.fechacreacion}"></td>
-                        <td data-label="Celular" th:text="${ofer.codicioncomercial}"></td>
+                    <tr th:each="lista,stat : ${listadecomponentes}">
+                        <td data-label="Ítem" th:text="${lista}"></td>
+                        <td data-label="Razón Social" th:text="${lista}"></td>
+                        <td data-label="NIT" th:text="${lista}"></td>
+                        <td data-label="Contacto" th:text="${lista}"></td>
+                        <td data-label="Celular" th:text="${lista}"></td>
                         <td data-label="Acciones">
-                            <a th:href="@{'/editarcliente/' + ${ofer.codigo}}">Modificar</a>
-                            <a th:href="@{'/eliminarcliente/' + ${ofer.codigo}}"
+                            <a th:href="@{'/editarcliente/' + ${lista}}">Modificar</a>
+                            <a th:href="@{'/eliminarcliente/' + ${lista}}"
                                onclick="return confirm('¿Está seguro de eliminar este empleado?')">Eliminar</a>
                         </td>
                     </tr>
@@ -48,10 +48,10 @@
             </table>
         </div>
 
-        <div th:if="${listaofertas == null or listaofertas.empty}" class="vacio">
+        <div th:if="${listadecomponentes == null or listadecomponentes.empty}" class="vacio">
             <p>La lista de ofertas se encuentra vacía</p>
         </div>
     </div>
 </body>
 
-</html>'
+</html>

@@ -52,9 +52,11 @@ public class controladorservicio {
     
     
     @GetMapping("/editarservicio/{codigo}")
-    public String editservicio(servicio s){
+    public String editservicio(servicio s, Model modelo){
         System.out.println("servicio "+s);
-        return "redirect:/";
+        s = sservice.buscarservicio(s);
+        modelo.addAttribute("servicio", s);
+        return "servicio/formularioservicio";
     }
     
     @GetMapping("/eliminarservicio")

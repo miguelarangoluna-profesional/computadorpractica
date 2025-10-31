@@ -3,6 +3,7 @@ package tpdindustrial.tpdindustrial.service;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import tpdindustrial.tpdindustrial.DAO.relacionofertaservicioDAO;
 import tpdindustrial.tpdindustrial.domain.relacionofertaservicio;
 
@@ -30,6 +31,17 @@ public class relacionofertaservicioserviceimplements implements relacionofertase
     @Override
     public relacionofertaservicio buscarelacionofertaservicio(relacionofertaservicio ros) {
         return rosdao.findById(ros.getCodigo()).orElse(null);
+    }
+
+    @Override
+    public void detalleofertaservicioclienteempleado(List<Object> carrito, int code_cliente, int code_empleado) {
+        System.out.println(" Estas en el metodo detalleofertaservicioclienteempleado ");
+    }
+
+    @Override
+    @Transactional
+    public void guardarlistarelacionofertaservicio(List<relacionofertaservicio> glros) {
+        rosdao.saveAll(glros);
     }
     
 }

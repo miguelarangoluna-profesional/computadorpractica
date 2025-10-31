@@ -16,7 +16,11 @@ public interface ofertaservice {
     
     public oferta buscaroferta(oferta o);
     
-    public void procesodetalle(String servicio, int cantidad);
+    //metodos para agregar
+    public void recibiendoObjetos(List<Object> carrito, String servicio, int cantidad);
     
-    public List<Object> recibiendoObjetos(String servicio);
+    public void registrarofertaydetalle(List<Object>carrito,int codecliente,int codempleado);
+    
+    
+    
 }

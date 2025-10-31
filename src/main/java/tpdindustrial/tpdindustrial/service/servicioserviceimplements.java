@@ -40,5 +40,10 @@ public class servicioserviceimplements implements servicioservice{
     public servicio buscarservicio(servicio s) {
         return sservice.findById(s.getCodigo()).orElse(null);
     }
+
+    @Override
+    public List<servicio> buscarpordescripcion(String nombre) {
+        return sservice.findByDescripcion(nombre);
+    }
     
 }
