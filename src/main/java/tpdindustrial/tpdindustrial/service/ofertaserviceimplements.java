@@ -88,24 +88,34 @@ public class ofertaserviceimplements implements ofertaservice {
     public void registrarofertaydetalle(List<Object> carrito, int codecliente, int codempleado) {
         List<Object> detalleoferta = new ArrayList<>();
         List<relacionofertaservicio> detalleofertaservicio= new ArrayList<>();
-        relacionofertaservicio ros = new relacionofertaservicio();
+        
         cliente c = new cliente();
         empleado e = new empleado();
-        servicio s = new servicio();
-        sservice.buscarservicio(s);
+        oferta ofert = new oferta();
         c.setCodigo(codecliente);
         e.setCodigo(codempleado);
         c = clientservice.buscarcliente(c);
         e = empleservice.buscarempleado(e);
+        
+        ofert.setCliente(c);
+        ofert.setEmpleado(e);
+        guardaroferta(ofert);
+        System.out.println("oferta guardada "+ofert);
+        
+       
+        c = clientservice.buscarcliente(c);
+        e = empleservice.buscarempleado(e);
         List<servicio> ls = new ArrayList<>();
+        System.out.println("estas en la linea 101");
         for(Object o:carrito){
+            relacionofertaservicio ros = new relacionofertaservicio();
             List<Object> fila = (List<Object>) o;
             Integer id = (Integer) fila.get(0);
             String nombreservicio = (String) fila.get(1);
-            s.setDescripcion(nombreservicio);
+            
             System.out.println("nombreservicio "+nombreservicio);
             ls= sservice.buscarpordescripcion(nombreservicio);
-            ls.forEach(System.out::println);
+            System.out.println("lista de servicios "+ls);
             Integer cantidad = (Integer) fila.get(2);
             Integer preciounitario = (Integer) fila.get(3);
             Integer total = (Integer) fila.get(4);
@@ -114,9 +124,8 @@ public class ofertaserviceimplements implements ofertaservice {
 //            ros.setServicio();
 //            ros.setValortotal(total); 
             detalleofertaservicio.add(ros);
-            System.out.println("objeto: =====>>> "+o.toString());
         }
-        System.out.println("ros: "+ros);
+        detalleofertaservicio.forEach(System.out::println);
         System.out.println("los datos recibidos son: "+carrito+" - "+" Informacion cliente: "+c+" informacion empleado: "+e);
     }
     

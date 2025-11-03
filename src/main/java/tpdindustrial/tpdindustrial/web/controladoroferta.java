@@ -115,20 +115,15 @@ public class controladoroferta {
             oferta ofer,
             @ModelAttribute("lista1") List<Object> carrito,
             Model modelo,
-            @RequestParam("cod_cliente") String codecliente,
-            @RequestParam("cod_empleado") String codeempleado){
-        int codclient = Integer.parseInt(codecliente);
-        int codempleado= Integer.parseInt(codeempleado);
-        for(Object o: carrito){
-            
-        }
+            @RequestParam("cod_cliente") Integer codecliente,
+            @RequestParam("cod_empleado") Integer codeempleado){
+        
         System.out.println("===========*****========");
-        System.out.println("oferta: "+ofer);
-        System.out.println("carrito: "+carrito);
-        System.out.println("Codigo cliente: "+codecliente);
-        System.out.println("Codigo empleado: "+codeempleado);
-        oferservice.registrarofertaydetalle(carrito, codclient, codempleado);
-        relacionofertaservicio ros = new relacionofertaservicio();
+//        System.out.println("oferta: "+ofer);
+//        System.out.println("carrito: "+carrito);
+//        System.out.println("Codigo cliente: "+codecliente);
+//        System.out.println("Codigo empleado: "+codeempleado);
+        oferservice.registrarofertaydetalle(carrito, codecliente, codeempleado);
         return "redirect:/";
     }
     
