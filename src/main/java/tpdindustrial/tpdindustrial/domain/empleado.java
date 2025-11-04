@@ -24,8 +24,8 @@ public class empleado implements Serializable {
     
     private Double salario;
     
-    @NotEmpty(message = "Debe digitar el celular")
-    private String celular;
+    
+    private Integer celular;
     
     
     @ToString.Exclude
