@@ -1,7 +1,9 @@
 package tpdindustrial.tpdindustrial.web;
 
+import ch.qos.logback.core.model.processor.PhaseIndicator;
 import jakarta.servlet.http.HttpSession;
 import jakarta.validation.Valid;
+import jakarta.websocket.server.PathParam;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
@@ -12,6 +14,7 @@ import org.springframework.ui.Model;
 import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.SessionAttributes;
@@ -47,6 +50,8 @@ public class controladoroferta {
 
     @Autowired
     private servicioservice sservice;
+    
+    
 
     @GetMapping("/ventanaofertas")
     public String ventanaoferta() {
@@ -54,7 +59,8 @@ public class controladoroferta {
     }
 
     @GetMapping("/listaofertas")
-    public String listaofert() {
+    public String listaofert(Model modelo) {
+        modelo.addAttribute("listaofertas", oferservice.listaroferta());
         return "ofertas/listaofertas";
     }
 
@@ -73,7 +79,6 @@ public class controladoroferta {
 
     @GetMapping("/agregarservicioaoferta")
     public String agregarservicioferta(
-            RedirectAttributes redirectattributes,
             @RequestParam("seleccionservicio") String ser,
             @RequestParam("cantidad") int cant,
             @ModelAttribute("lista1") List<Object> carrito,
@@ -86,7 +91,7 @@ public class controladoroferta {
         System.out.println("oferservice " + oferservice);
         String servicio = ser;
         System.out.println("el servicio seleccionado es: " + ser);
-        redirectattributes.addFlashAttribute("mensaje", "mensaje desde el controladoroferta metodo agregarservicioaoferta");
+        carrito.forEach(System.out::println);
         listaobjeto.forEach(System.out::println);
         modelo.addAttribute("listadeservicio", sservice.listarservicio());
         modelo.addAttribute("listacliente", cliservice.listarcliente());
@@ -94,7 +99,7 @@ public class controladoroferta {
         modelo.addAttribute("listadeservicioseleccionado", carrito);
         System.out.println("carrito "+carrito);
         listamap.remove("cantidad");
-        System.out.println("Lista despues de quitar un atributo de lisamap: "+listamap);
+        System.out.println("Lista despues de quitar un atributo de lisamap: en la clase controladoroferta "+listamap);
         return "ofertas/formularioferta";
     }
     
@@ -117,14 +122,16 @@ public class controladoroferta {
             Model modelo,
             @RequestParam("cod_cliente") Integer codecliente,
             @RequestParam("cod_empleado") Integer codeempleado){
-        
+        System.out.println("los datos de la oferta son: "+ofer);
         System.out.println("===========*****========");
 //        System.out.println("oferta: "+ofer);
 //        System.out.println("carrito: "+carrito);
 //        System.out.println("Codigo cliente: "+codecliente);
 //        System.out.println("Codigo empleado: "+codeempleado);
-        oferservice.registrarofertaydetalle(carrito, codecliente, codeempleado);
-        return "redirect:/";
+        oferservice.registrarofertaydetalle(carrito, codecliente, codeempleado,ofer);
+        return "redirect:/listaofertas";
     }
+    
+    
     
 }

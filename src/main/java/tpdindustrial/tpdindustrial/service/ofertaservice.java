@@ -3,10 +3,6 @@ package tpdindustrial.tpdindustrial.service;
 import java.util.List;
 import tpdindustrial.tpdindustrial.domain.oferta;
 
-/**
- *
- * @author USUARIO
- */
 public interface ofertaservice {
     public List<oferta> listaroferta();
     
@@ -19,8 +15,6 @@ public interface ofertaservice {
     //metodos para agregar
     public void recibiendoObjetos(List<Object> carrito, String servicio, int cantidad);
     
-    public void registrarofertaydetalle(List<Object>carrito,int codecliente,int codempleado);
-    
-    
-    
+    public void registrarofertaydetalle(List<Object>carrito,int codecliente,int codempleado,oferta oferta);
+           
 }

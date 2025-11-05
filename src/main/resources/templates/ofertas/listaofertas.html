@@ -24,6 +24,7 @@
                 <thead>
                     <tr>
                         <th>Ítem</th>
+                        <th>Codigo oferta</th>
                         <th>Descripcion</th>
                         <th>Forma de pago</th>
                         <th>Fecha creación</th>
@@ -32,13 +33,15 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <tr th:each="ofer : ${listaofertas}">
+                    <tr th:each="ofer,contador : ${listaofertas}">
+                        <td data-label="Ítem" th:text="${contador.count}"></td>
                         <td data-label="Ítem" th:text="${ofer.codigo}"></td>
                         <td data-label="Razón Social" th:text="${ofer.descripcion}"></td>
                         <td data-label="NIT" th:text="${ofer.formapago}"></td>
                         <td data-label="Contacto" th:text="${ofer.fechacreacion}"></td>
                         <td data-label="Celular" th:text="${ofer.codicioncomercial}"></td>
                         <td data-label="Acciones">
+                            <a th:text="${'Ver detalles de la oferta'}" th:href="@{'/detalleoferta/'+${ofer.codigo}}"></a>
                             <a th:href="@{'/editarcliente/' + ${ofer.codigo}}">Modificar</a>
                             <a th:href="@{'/eliminarcliente/' + ${ofer.codigo}}"
                                onclick="return confirm('¿Está seguro de eliminar este empleado?')">Eliminar</a>

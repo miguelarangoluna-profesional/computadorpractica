@@ -23,7 +23,7 @@ public class cliente implements Serializable{
     @NotEmpty(message = "El campo razonsocial no debe estar vacio")
     private String razonsocial;
     
-    private Integer nit;
+    private long nit;
     
     private String contacto;
     

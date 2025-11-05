@@ -85,49 +85,61 @@ public class ofertaserviceimplements implements ofertaservice {
     }
 
     @Override
-    public void registrarofertaydetalle(List<Object> carrito, int codecliente, int codempleado) {
+    public void registrarofertaydetalle(List<Object> carrito, int codecliente, int codempleado, oferta ofer) {
         List<Object> detalleoferta = new ArrayList<>();
         List<relacionofertaservicio> detalleofertaservicio= new ArrayList<>();
         
         cliente c = new cliente();
         empleado e = new empleado();
-        oferta ofert = new oferta();
+        
         c.setCodigo(codecliente);
         e.setCodigo(codempleado);
         c = clientservice.buscarcliente(c);
         e = empleservice.buscarempleado(e);
         
-        ofert.setCliente(c);
-        ofert.setEmpleado(e);
-        guardaroferta(ofert);
-        System.out.println("oferta guardada "+ofert);
-        
-       
-        c = clientservice.buscarcliente(c);
-        e = empleservice.buscarempleado(e);
+        ofer.setCliente(c);
+        ofer.setEmpleado(e);
+        guardaroferta(ofer);
+        System.out.println("oferta guardada "+ofer);
+        carrito.forEach(System.out::println);
         List<servicio> ls = new ArrayList<>();
         System.out.println("estas en la linea 101");
+        
         for(Object o:carrito){
             relacionofertaservicio ros = new relacionofertaservicio();
             List<Object> fila = (List<Object>) o;
             Integer id = (Integer) fila.get(0);
             String nombreservicio = (String) fila.get(1);
-            
+            System.out.println("el tamaño de la fila es: "+fila.size());
+            fila.forEach(System.out::println);
+            servicio s = new servicio();
+            s.setCodigo(id);
+            s = sservice.buscarservicio(s);
             System.out.println("nombreservicio "+nombreservicio);
-            ls= sservice.buscarpordescripcion(nombreservicio);
-            System.out.println("lista de servicios "+ls);
+//            ls= sservice.buscarpordescripcion(nombreservicio);
+//            System.out.println("lista de servicios "+ls);
             Integer cantidad = (Integer) fila.get(2);
             Integer preciounitario = (Integer) fila.get(3);
+            System.out.println("precio unitario "+preciounitario);
             Integer total = (Integer) fila.get(4);
-            fila.forEach(System.out::println);
+            Double tot = total.doubleValue();
+            System.out.println("precio total "+tot);
+//            for(Object ob:fila){
+//                System.out.println("objeto: === >>>: "+ob);
+//            }
+//            fila.forEach(System.out::println);
+            ros.setValortotal(tot);
+            ros.setOferta(ofer);
             ros.setCantidad(cantidad);
+            ros.setServicio(s);
+            
 //            ros.setServicio();
 //            ros.setValortotal(total); 
             detalleofertaservicio.add(ros);
         }
         detalleofertaservicio.forEach(System.out::println);
+        rosservice.guardarlistarelacionofertaservicio(detalleofertaservicio);
         System.out.println("los datos recibidos son: "+carrito+" - "+" Informacion cliente: "+c+" informacion empleado: "+e);
     }
-    
     
 }
