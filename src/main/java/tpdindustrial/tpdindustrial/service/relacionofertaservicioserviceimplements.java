@@ -43,5 +43,13 @@ public class relacionofertaservicioserviceimplements implements relacionofertase
     public void guardarlistarelacionofertaservicio(List<relacionofertaservicio> glros) {
         rosdao.saveAll(glros);
     }
+
+    @Override
+    public List<relacionofertaservicio> listardetalleofertaservicio(Integer codigo) {
+        List<relacionofertaservicio> lista = rosdao.findByOfertaCodigo(codigo);//quitar
+        return lista;
+    }
+    
+    
     
 }

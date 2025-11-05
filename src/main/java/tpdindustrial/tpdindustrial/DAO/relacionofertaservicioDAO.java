@@ -4,6 +4,7 @@
  */
 package tpdindustrial.tpdindustrial.DAO;
 
+import java.util.List;
 import org.springframework.data.jpa.repository.JpaRepository;
 import tpdindustrial.tpdindustrial.domain.relacionofertaservicio;
 
@@ -12,5 +13,5 @@ import tpdindustrial.tpdindustrial.domain.relacionofertaservicio;
  * @author USUARIO
  */
 public interface relacionofertaservicioDAO extends JpaRepository<relacionofertaservicio,Integer>{
-    
+    List<relacionofertaservicio> findByOfertaCodigo(Integer codigo); 
 }

@@ -1,15 +1,58 @@
 <!DOCTYPE html>
-<!--
-Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
-Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this template
--->
-<html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+
     <head>
-        <title>TODO supply a title</title>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Lista de ofertas</title>
+        <link rel="stylesheet" th:href="@{/css/estilolistaempleados.css}">
     </head>
+
     <body>
-        <div>TODO write content</div>
+        <div class="container">
+            <h1>Detalle de la oferta</h1>
+            <div class="acciones-superiores">
+                <a th:text="${'Boton disponible'}" th:href="@{/addoferta}"></a>
+                <a th:href="@{/}">Volver</a>
+            </div>
+
+            <hr/>
+            
+            <p th:text="|Condiones: ${condiciones}|"></p>
+            <p th:text="|Forma de pago: ${formadepago}|"></p>
+            <p th:text="|Empleado: ${empleado}|"></p>
+            <div th:if="${detalleoferta != null and !detalleoferta.empty}">
+                <table border="1">
+                    <thead>
+                        <tr>
+                            <th>Ítem</th>
+                            <th>Codigo oferta</th>
+                            <th>Descripcion</th>
+                            <th>Valor total</th>
+                            <th>Acciones</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr th:each="detalleofertaservicio,contador : ${detalleoferta}">
+                            <td data-label="Ítem" th:text="${contador.count}"></td>
+                            <td data-label="Ítem" th:text="${detalleofertaservicio.codigo}"></td>
+                            <td data-label="Razón Social" th:text="${detalleofertaservicio?.servicio?.descripcion}"></td>
+                            <td th:text="|$ ${#numbers.formatDecimal(detalleofertaservicio?.valortotal,0,'COMMA',2,'POINT')}|"></td>
+                            <td data-label="Acciones">
+                                <a th:href="@{'/eliminarcliente/' + ${detalleofertaservicio.codigo}}"
+                                   onclick="return confirm('¿Está seguro de eliminar este empleado?')">Eliminar</a>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <div th:if="${detalleoferta == null or detalleoferta.empty}" class="vacio">
+                <p>La lista detalle oferta se encuentra vacía</p>
+            </div>
+        </div>
     </body>
-</html>
+
+</html>'
