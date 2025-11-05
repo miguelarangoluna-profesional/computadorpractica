@@ -84,5 +84,19 @@ public class controladortest {
         return "redirect:/";
     }
     
+    @GetMapping("/pruebapaginacondicional")
+    public String pruebanavegacion(){
+        boolean estado=false;
+        String resultado="";
+        if(estado==true){
+        resultado="cierto";
+        }else {
+            resultado="falso";
+        }
+        System.out.println("operacion falsa");
+        String m ="cierto".equals(resultado)?"redirect:/":"test/listatest";
+        return m;
+    }
+    
     
 }

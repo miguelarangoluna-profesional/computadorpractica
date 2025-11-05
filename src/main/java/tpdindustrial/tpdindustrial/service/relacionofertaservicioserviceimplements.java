@@ -9,7 +9,7 @@ import tpdindustrial.tpdindustrial.domain.relacionofertaservicio;
 
 @Service
 public class relacionofertaservicioserviceimplements implements relacionofertaservicioService{
-
+  
     @Autowired
     private relacionofertaservicioDAO rosdao;
     
@@ -46,10 +46,22 @@ public class relacionofertaservicioserviceimplements implements relacionofertase
 
     @Override
     public List<relacionofertaservicio> listardetalleofertaservicio(Integer codigo) {
-        List<relacionofertaservicio> lista = rosdao.findByOfertaCodigo(codigo);//quitar
+        List<relacionofertaservicio> lista = rosdao.findByOfertaCodigo(codigo);
         return lista;
     }
+
+    @Override
+    public Double totaldetalleofertaservicio(List<relacionofertaservicio> ros) {
+        Double t = 0.0;
+        for(relacionofertaservicio r:ros){
+            t= t+r.getValortotal();
+        }
+        System.out.println("total: ===>> "+t);
+        return t;
+    }
+
     
     
-    
+
+
 }

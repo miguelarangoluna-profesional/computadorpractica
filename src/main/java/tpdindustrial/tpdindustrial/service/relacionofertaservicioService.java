@@ -27,4 +27,7 @@ public interface relacionofertaservicioService {
     public void detalleofertaservicioclienteempleado(List<Object> carrito,int code_cliente,int code_empleado);
     
     public List<relacionofertaservicio> listardetalleofertaservicio(Integer codigo);
+    
+    public Double totaldetalleofertaservicio(List<relacionofertaservicio> ros);
+    
 }

@@ -23,6 +23,7 @@
             <p th:text="|Condiones: ${condiciones}|"></p>
             <p th:text="|Forma de pago: ${formadepago}|"></p>
             <p th:text="|Empleado: ${empleado}|"></p>
+            <label><strong>Total esta oferta: $ </strong></label><p th:text="${#numbers.formatDecimal(total,0,'POINT',1,'COMMA')}"></p>
             <div th:if="${detalleoferta != null and !detalleoferta.empty}">
                 <table border="1">
                     <thead>
@@ -39,7 +40,7 @@
                             <td data-label="Ítem" th:text="${contador.count}"></td>
                             <td data-label="Ítem" th:text="${detalleofertaservicio.codigo}"></td>
                             <td data-label="Razón Social" th:text="${detalleofertaservicio?.servicio?.descripcion}"></td>
-                            <td th:text="|$ ${#numbers.formatDecimal(detalleofertaservicio?.valortotal,0,'COMMA',2,'POINT')}|"></td>
+                            <td th:text="|$ ${#numbers.formatDecimal(detalleofertaservicio?.valortotal,0,'POINT',2,'COMMA')}|"></td>
                             <td data-label="Acciones">
                                 <a th:href="@{'/eliminarcliente/' + ${detalleofertaservicio.codigo}}"
                                    onclick="return confirm('¿Está seguro de eliminar este empleado?')">Eliminar</a>
