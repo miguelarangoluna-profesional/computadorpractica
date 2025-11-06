@@ -1,0 +1,42 @@
+body{
+    margin: 0 auto;
+    background: gold;
+    align-items: center;
+    display: flex;
+    justify-content: center;
+    height: 100vh;
+}
+
+
+.container{
+    background: goldenrod;
+    border: solid 1px;
+    margin: 40px 0 0 0;
+    display: grid;
+    align-items: end;
+}
+header{
+    border: solid 1px;
+    text-align: center;
+}
+
+nav{
+    border: solid 1px;
+    display: flex;
+
+    justify-content: space-around;
+}
+
+nav > a{
+    text-decoration: none;
+}
+section{
+    display: flex;
+    align-items: baseline;
+    gap: 20px;
+    border: solid 1px;
+}
+footer{
+    border: solid 1px;
+}
+

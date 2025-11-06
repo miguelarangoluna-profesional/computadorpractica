@@ -3,58 +3,58 @@
       xmlns:th="http://www.thymeleaf.org"
       xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 
-<head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Lista de ofertas</title>
-    <link rel="stylesheet" th:href="@{/css/estilolistaempleados.css}">
-</head>
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Lista de ofertas</title>
+        <link rel="stylesheet" th:href="@{/css/estilolistaempleados.css}">
+    </head>
 
-<body>
-    <div class="container">
-        <h1>Lista de Ofertas</h1>
-        <div class="acciones-superiores">
-            <a th:text="${'Agregar ofertas'}" th:href="@{/addoferta}"></a>
-            <a th:href="@{/}">Volver</a>
-            <a th:href="@{/limpiar1}">Limpiar</a>
-        </div>
+    <body>
+        <div class="container">
+            <h1>Lista de Ofertas</h1>
+            <div class="acciones-superiores">
+                <a th:text="${'Agregar ofertas'}" th:href="@{/addoferta}"></a>
+                <a th:href="@{/}">Volver</a>
+                <a th:href="@{/limpiar1}">Limpiar</a>
+            </div>
 
-        <div th:if="${listaofertas != null and !listaofertas.empty}">
-            <table border="1">
-                <thead>
-                    <tr>
-                        <th>Ítem</th>
-                        <th>Codigo oferta</th>
-                        <th>Descripcion</th>
-                        <th>Forma de pago</th>
-                        <th>Fecha creación</th>
-                        <th>Codicones comerciales</th>
-                        <th>Acciones</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr th:each="ofer,contador : ${listaofertas}">
-                        <td data-label="Ítem" th:text="${contador.count}"></td>
-                        <td data-label="Ítem" th:text="${ofer.codigo}"></td>
-                        <td data-label="Razón Social" th:text="${ofer.descripcion}"></td>
-                        <td data-label="NIT" th:text="${ofer.formapago}"></td>
-                        <td data-label="Contacto" th:text="${ofer.fechacreacion}"></td>
-                        <td data-label="Celular" th:text="${ofer.codicioncomercial}"></td>
-                        <td data-label="Acciones">
-                            <a th:text="${'Ver detalles de la oferta'}" th:href="@{'/detalleoferta/'+${ofer.codigo}}"></a>
-                            <a th:href="@{'/editarcliente/' + ${ofer.codigo}}">Modificar</a>
-                            <a th:href="@{'/eliminarcliente/' + ${ofer.codigo}}"
-                               onclick="return confirm('¿Está seguro de eliminar este empleado?')">Eliminar</a>
-                        </td>
-                    </tr>
-                </tbody>
-            </table>
-        </div>
+            <div th:if="${listaofertas != null and !listaofertas.empty}">
+                <table border="1">
+                    <thead>
+                        <tr>
+                            <th>Ítem</th>
+                            <th>Codigo oferta</th>
+                            <th>Descripcion</th>
+                            <th>Forma de pago</th>
+                            <th>Fecha creación</th>
+                            <th>Codicones comerciales</th>
+                            <th>Acciones</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr th:each="ofer,contador : ${listaofertas}">
+                            <td data-label="Ítem" th:text="${contador.count}"></td>
+                            <td data-label="Ítem" th:text="${ofer.codigo}"></td>
+                            <td data-label="Razón Social" th:text="${ofer.descripcion}"></td>
+                            <td data-label="NIT" th:text="${ofer.formapago}"></td>
+                            <td data-label="Contacto" th:text="${ofer.fechacreacion}"></td>
+                            <td data-label="Celular" th:text="${ofer.codicioncomercial}"></td>
+                            <td data-label="Acciones">
+                                <a th:href="@{'/detalleoferta/'+${ofer.codigo}}"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-ticket-detailed" viewBox="0 0 16 16">
+                                        <path d="M4 5.5a.5.5 0 0 1 .5-.5h7a.5.5 0 0 1 0 1h-7a.5.5 0 0 1-.5-.5m0 5a.5.5 0 0 1 .5-.5h7a.5.5 0 0 1 0 1h-7a.5.5 0 0 1-.5-.5M5 7a1 1 0 0 0 0 2h6a1 1 0 1 0 0-2z"/>
+                                        <path d="M0 4.5A1.5 1.5 0 0 1 1.5 3h13A1.5 1.5 0 0 1 16 4.5V6a.5.5 0 0 1-.5.5 1.5 1.5 0 0 0 0 3 .5.5 0 0 1 .5.5v1.5a1.5 1.5 0 0 1-1.5 1.5h-13A1.5 1.5 0 0 1 0 11.5V10a.5.5 0 0 1 .5-.5 1.5 1.5 0 1 0 0-3A.5.5 0 0 1 0 6zM1.5 4a.5.5 0 0 0-.5.5v1.05a2.5 2.5 0 0 1 0 4.9v1.05a.5.5 0 0 0 .5.5h13a.5.5 0 0 0 .5-.5v-1.05a2.5 2.5 0 0 1 0-4.9V4.5a.5.5 0 0 0-.5-.5z"/>
+                                    </svg></a>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
 
-        <div th:if="${listaofertas == null or listaofertas.empty}" class="vacio">
-            <p>La lista de ofertas se encuentra vacía</p>
+            <div th:if="${listaofertas == null or listaofertas.empty}" class="vacio">
+                <p>La lista de ofertas se encuentra vacía</p>
+            </div>
         </div>
-    </div>
-</body>
+    </body>
 
 </html>'

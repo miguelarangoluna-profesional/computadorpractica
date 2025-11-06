@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head th:insert="~{test/plantilla::estilospagina}">
+</head>
+<body>
+    <div class="container">
+        <p th:text="${parrafo=='parrafo'}?${'cierto'}:${'falso'}"></p>
+        <header th:insert="~{test/plantilla::cabezera}"></header>
+        <p th:insert="${mensaje=='parrafo1'}?~{test/plantilla::parrafo1}:~{test/plantilla::parrafo2}"></p>
+        
+        
+    </div>
+</body>
+</html>

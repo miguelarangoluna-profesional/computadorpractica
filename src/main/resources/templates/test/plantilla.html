@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+    <head th:fragment="estilospagina">
+        <meta charset="UTF-8"/>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+        <title>pagina thymeleaf</title>
+        <link rel="stylesheet" th:href="@{../css/estilospaginapractica.css}"/>
+
+    </head>
+    <body>
+        <div class="container">
+            <header th:fragment="cabezera"><h1>Bienvenidos a la practica</h1></header>
+            <nav th:fragment="navegacion">
+                <a href="">Productos</a>
+                <a href="">Quienes somos</a>
+                <a href="">Servicios</a>
+                <a href="">Contactenos</a>
+            </nav>
+            <div th:fragment="parrafo1">
+                <p th:text="${'Mensaje Parrafo ***************  1'}"></p>
+            </div>
+             <div th:fragment="parrafo2">
+                <p th:text="${'Mensaje Parrafo ***************  2'}"></p>
+            </div>
+            <section th:fragment="seccion">
+                <h2>parrafo</h2>
+                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Doloremque, maxime.</p>
+            </section>
+            <footer th:fragment="piepagina">miguelarango3777@hotmail.com</footer>
+        </div>
+    </body>
+</html>

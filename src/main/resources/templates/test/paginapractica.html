@@ -2,13 +2,22 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:th="http://www.thymeleaf.org"
       xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
-
-    <head>
-        <title>TODO supply a title</title>
-        <meta charset="UTF-8"/>
-        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-    </head>
-    <body>
-        <div>Pagina de prueba</div>
-    </body>
+<head th:insert="~{test/plantilla::estilospagina}">
+</head>
+<body>
+    <div class="container">
+        <nav>
+            <a href="">Productos</a>
+            <a href="">Quienes somos</a>
+            <a href="">Servicios</a>
+            <a href="">Contactenos</a>
+        </nav>
+        
+        <section>
+            <h2>parrafo</h2>
+            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Doloremque, maxime.</p>
+        </section>
+        <footer>miguelarango3777@hotmail.com</footer>
+    </div>
+</body>
 </html>

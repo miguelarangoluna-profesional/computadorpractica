@@ -43,7 +43,8 @@
                             <td th:text="|$ ${#numbers.formatDecimal(detalleofertaservicio?.valortotal,0,'POINT',2,'COMMA')}|"></td>
                             <td data-label="Acciones">
                                 <a th:href="@{'/eliminarcliente/' + ${detalleofertaservicio.codigo}}"
-                                   onclick="return confirm('¿Está seguro de eliminar este empleado?')">Eliminar</a>
+                                   onclick="return confirm('¿Está seguro de eliminar este empleado?')">Eliminar
+                                </a>
                             </td>
                         </tr>
                     </tbody>
@@ -56,4 +57,4 @@
         </div>
     </body>
 
-</html>'
+</html>

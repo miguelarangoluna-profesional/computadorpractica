@@ -43,7 +43,9 @@
                         <td data-label="Correo" th:text="${cli.correo}"></td>
                         <td data-label="Celular" th:text="${cli.celular}"></td>
                         <td data-label="Acciones">
+                            <a th:href="@{/generareporte}">Reporte cliente</a>
                             <a th:href="@{'/editarcliente/' + ${cli.codigo}}">Modificar</a>
+                            
                             <a th:href="@{'/eliminarcliente/' + ${cli.codigo}}"
                                onclick="return confirm('¿Está seguro de eliminar este cliente?')">Eliminar</a>
                         </td>

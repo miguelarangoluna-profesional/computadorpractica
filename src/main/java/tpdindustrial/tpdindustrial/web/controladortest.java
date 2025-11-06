@@ -26,77 +26,79 @@ import tpdindustrial.tpdindustrial.test.listavarioselementos;
 @Controller
 @Slf4j
 public class controladortest {
-    
+
     @Autowired
     private servicioservice sservice;
-    
+
     @GetMapping("/prueba")
-    public String test(Model modelo,RedirectAttributes redirectattrs){
+    public String test(Model modelo, RedirectAttributes redirectattrs) {
         String m = "mensaje desde el metodo controlador de la clase test";
         int n = formadepago.SESENTA.getFormapago();
         List<formadepago> li = new ArrayList<>();
-        for(formadepago f: formadepago.values()){
-            System.out.println("forma de pago "+f);
+        for (formadepago f : formadepago.values()) {
+            System.out.println("forma de pago " + f);
             li.add(f);
         }
         li.forEach(System.out::println);
-        modelo.addAttribute("listaenum",li);   
-        redirectattrs.addFlashAttribute("mensaje", formadepago.NOVENTA.getFormapago()+" - "+n);
+        modelo.addAttribute("listaenum", li);
+        redirectattrs.addFlashAttribute("mensaje", formadepago.NOVENTA.getFormapago() + " - " + n);
         redirectattrs.addFlashAttribute("listaenum", li);
-        return "redirect:/";  
-    }
-    
-    @GetMapping("/agregarlistaopciones")
-    public String adicionarlistaopciones(@RequestParam("servicio") List<String> lista,@RequestParam("areasselecionadas") List<String> lista1){
-        System.out.println("lista: "+lista);
-        System.out.println("lista1: "+lista1);
         return "redirect:/";
     }
-    
+
+    @GetMapping("/agregarlistaopciones")
+    public String adicionarlistaopciones(@RequestParam("servicio") List<String> lista, @RequestParam("areasselecionadas") List<String> lista1) {
+        System.out.println("lista: " + lista);
+        System.out.println("lista1: " + lista1);
+        return "redirect:/";
+    }
+
     @GetMapping("/pruebatest")
-    public String testearprueba(Model modelo){
-        
-        for(listavarioselementos e: listavarioselementos.values()){
-            System.out.println("elementos "+e.getElementos());
-        }    
+    public String testearprueba(Model modelo) {
+
+        for (listavarioselementos e : listavarioselementos.values()) {
+            System.out.println("elementos " + e.getElementos());
+        }
         List<listavarioselementos> lista = Arrays.asList(listavarioselementos.values());
-        modelo.addAttribute("listadecomponentes",lista);
-        
+        modelo.addAttribute("listadecomponentes", lista);
+
         return "test/listatest";
     }
-    
+
     @GetMapping("/agregartest")
-    public String agregatests(Model modelo){
+    public String agregatests(Model modelo) {
         modelo.addAttribute("elementos1", listavarioselementos.values());
         modelo.addAttribute("elementos", sservice.listarservicio());
         return "test/formulariotest";
     }
-    
-    
+
     @GetMapping("/consultasespeciales")
-    public String consultasespeciales(@RequestParam("nombre")String descripcion){
+    public String consultasespeciales(@RequestParam("nombre") String descripcion) {
         servicio s = new servicio();
-        System.out.println("name: "+descripcion);
+        System.out.println("name: " + descripcion);
         System.out.println("hola estas en la clase");
         s.setDescripcion(descripcion);
         sservice.buscarpordescripcion(descripcion);
-        System.out.println("sservice:///====>>>> "+sservice.buscarpordescripcion(descripcion));
+        System.out.println("sservice:///====>>>> " + sservice.buscarpordescripcion(descripcion));
         return "redirect:/";
     }
-    
+
     @GetMapping("/pruebapaginacondicional")
-    public String pruebanavegacion(){
-        boolean estado=false;
-        String resultado="";
-        if(estado==true){
-        resultado="cierto";
-        }else {
-            resultado="falso";
+    public String pruebanavegacion(Model modelo) {
+        boolean estado = true;
+        String resultado = "";
+        String mensaje = "";
+        if (estado == true) {
+            resultado = "cierto";
+            mensaje= "parrafo1";
+        } else {
+            resultado = "falso";
+            mensaje = "parrafo2";
         }
-        System.out.println("operacion falsa");
-        String m ="cierto".equals(resultado)?"redirect:/":"test/listatest";
+        modelo.addAttribute("mensaje", mensaje);
+        System.out.println("la operacion es: " + resultado);
+        String m = "cierto".equals(resultado) ? "test/paginauno" : "test/paginados";
         return m;
     }
-    
-    
+
 }
