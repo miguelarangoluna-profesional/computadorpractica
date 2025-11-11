@@ -15,10 +15,11 @@ import org.springframework.web.bind.annotation.PostMapping;
 import tpdindustrial.tpdindustrial.domain.cliente;
 import tpdindustrial.tpdindustrial.service.clienteservice;
 
-/**
- *
- * @author USUARIO
- */
+
+
+
+
+
 @Controller
 @Slf4j
 public class controladorcliente {

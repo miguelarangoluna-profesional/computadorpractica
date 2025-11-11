@@ -13,9 +13,9 @@ import org.springframework.web.bind.annotation.GetMapping;
 import tpdindustrial.tpdindustrial.reportes.reportepdf;
 import tpdindustrial.tpdindustrial.service.clienteservice;
 
-/*
- * @author USUARIO
- */
+
+
+
 @Controller
 public class controladoreporte {
 
@@ -27,13 +27,12 @@ public class controladoreporte {
     
     @Autowired
     private clienteservice cservice;
-    
-    
+        
     @GetMapping("/generareporte")
     public ResponseEntity<byte[]> generareporte() {
         try {
-            List<Map<String, Object>> datos1 = new ArrayList<>();
-            datos1.add(Map.of());
+//            List<Map<String, Object>> datos1 = new ArrayList<>();
+//            datos1.add(Map.of());
             var datos = cservice.listarcliente();
             Map<String, Object> parametros = new HashMap<>();
             parametros.put("Titulo", "listado de oferta");
@@ -44,9 +43,8 @@ public class controladoreporte {
                     .contentType(MediaType.APPLICATION_PDF)
                     .body(pdf);
         } catch (Exception e) {
-            e.printStackTrace();;
+            e.printStackTrace();
             return ResponseEntity.internalServerError().build();
         }
-    }
-    
+    }   
 }
