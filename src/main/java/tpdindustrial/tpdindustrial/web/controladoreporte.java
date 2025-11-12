@@ -1,5 +1,8 @@
 package tpdindustrial.tpdindustrial.web;
 
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -13,23 +16,20 @@ import org.springframework.web.bind.annotation.GetMapping;
 import tpdindustrial.tpdindustrial.reportes.reportepdf;
 import tpdindustrial.tpdindustrial.service.clienteservice;
 
-
-
-
 @Controller
 public class controladoreporte {
 
     private final reportepdf reportpdf;
-    
+
     public controladoreporte(reportepdf report) {
         this.reportpdf = report;
     }
-    
+
     @Autowired
-    private clienteservice cservice;
-        
+    private clienteservice cservice; 
+    
     @GetMapping("/generareporte")
-    public ResponseEntity<byte[]> generareporte() {
+    public ResponseEntity<byte[]> generareporte(){
         try {
 //            List<Map<String, Object>> datos1 = new ArrayList<>();
 //            datos1.add(Map.of());
@@ -37,7 +37,9 @@ public class controladoreporte {
             Map<String, Object> parametros = new HashMap<>();
             parametros.put("Titulo", "listado de oferta");
             parametros.put("Logo", this.getClass().getResourceAsStream("/reportes/LOGO TPDI.png"));
-            byte[] pdf = reportpdf.generarReporte("reportecliente", parametros, datos);  
+            byte[] pdf = reportpdf.generarReporte("reportecliente", parametros, datos);
+            Path ruta = Paths.get("C:\\Users\\USUARIO\\Documents\\Reportespractica\\reporteprueba1.pdf");
+            Files.write(ruta, pdf);
             return ResponseEntity.ok()
                     .header(HttpHeaders.CONTENT_DISPOSITION, "attachment; filename=reporte_cliente.pdf")
                     .contentType(MediaType.APPLICATION_PDF)
@@ -46,5 +48,5 @@ public class controladoreporte {
             e.printStackTrace();
             return ResponseEntity.internalServerError().build();
         }
-    }   
+    }
 }

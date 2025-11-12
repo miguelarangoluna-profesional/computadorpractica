@@ -1,0 +1,87 @@
+<!-- Created with Jaspersoft Studio version 7.0.3.final using JasperReports Library version 7.0.3-41034ca841d452f3305ba55b9042260aaa1ab5dd  -->
+<jasperReport name="cotizacion" language="java" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="b14d2482-0566-48b7-bd7d-9566cbdd112e">
+	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="TPDINDUSTRIAL.jrdax"/>
+	<property name="com.jaspersoft.studio.data.sql.tables" value="cmVsYWNpb25vZmVydGFzZXJ2aWNpbyAsMTUsMTUsNTU4MzZhOTAtYjg1ZC00YzI0LTg5YWYtYzYz&#xa;MjlmNDU1ZTZhOw=="/>
+	<parameter name="Titulo" class="java.lang.String"/>
+	<query language="sql"><![CDATA[SELECT codigo,
+	cantidad,
+	valortotal
+FROM relacionofertaservicio]]></query>
+	<field name="codigo" class="java.lang.Integer">
+		<property name="com.jaspersoft.studio.field.name" value="codigo"/>
+		<property name="com.jaspersoft.studio.field.label" value="codigo"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="relacionofertaservicio"/>
+	</field>
+	<field name="cantidad" class="java.lang.Integer">
+		<property name="com.jaspersoft.studio.field.name" value="cantidad"/>
+		<property name="com.jaspersoft.studio.field.label" value="cantidad"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="relacionofertaservicio"/>
+	</field>
+	<field name="valortotal" class="java.lang.Double">
+		<property name="com.jaspersoft.studio.field.name" value="valortotal"/>
+		<property name="com.jaspersoft.studio.field.label" value="valortotal"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="relacionofertaservicio"/>
+	</field>
+	<background splitType="Stretch"/>
+	<title height="170" splitType="Stretch">
+		<element kind="image" uuid="a041277a-e499-4637-9749-4ce6901fd9f1" x="0" y="0" width="78" height="79">
+			<expression><![CDATA["LOGO TPDI.png"]]></expression>
+		</element>
+		<element kind="staticText" uuid="e13c3510-b41a-4df8-bb6f-33894609817f" x="90" y="10" width="120" height="21" hTextAlign="Center" vTextAlign="Middle">
+			<text><![CDATA[NIT: 901038244]]></text>
+		</element>
+		<element kind="staticText" uuid="5fdaa24f-5bb7-42fd-aff2-12648602682c" x="98" y="30" width="100" height="21" hTextAlign="Center" vTextAlign="Middle">
+			<text><![CDATA[Carrera 46 # 80-74]]></text>
+		</element>
+		<element kind="staticText" uuid="09debc8b-f945-4ce4-8f07-34ced47b4a5d" x="98" y="50" width="100" height="21" hTextAlign="Center" vTextAlign="Middle">
+			<text><![CDATA[Celular: 3505953644]]></text>
+		</element>
+		<element kind="staticText" uuid="0661b725-c283-422f-aac0-ac4c93bc1a81" x="82" y="70" width="133" height="22" hTextAlign="Center" vTextAlign="Middle">
+			<text><![CDATA[info@tpdindustrial.co]]></text>
+		</element>
+		<element kind="staticText" uuid="5959d0f6-977d-4089-96b8-8da480c17463" x="0" y="93" width="380" height="40" hTextAlign="Justified">
+			<text><![CDATA[Atendiendo su amable solicitud estamos enviando cotización de los productos y/o servicios requeridos, para nosotros es un placer poner nuestra compañia a sus servicios.]]></text>
+		</element>
+		<element kind="rectangle" uuid="405ace4c-807e-4cab-9665-cb947774e743" x="440" y="61" width="114" height="11" backcolor="#3DDB6A"/>
+		<element kind="staticText" uuid="1c3390ed-267a-4376-b800-207780c8cdf7" x="440" y="71" width="115" height="21" fontSize="16.0" bold="true" hTextAlign="Center">
+			<text><![CDATA[Cotización:]]></text>
+		</element>
+		<element kind="textField" uuid="06526d44-3b8e-44bf-8e14-020f40caeeb9" x="0" y="150" width="100" height="20" fontSize="12.0" hTextAlign="Left" vTextAlign="Middle">
+			<expression><![CDATA[$P{Titulo}]]></expression>
+		</element>
+	</title>
+	<pageHeader height="35" splitType="Stretch"/>
+	<columnHeader height="30" splitType="Stretch">
+		<element kind="staticText" uuid="c292d7b7-9f36-444e-adf0-b6fed6f0d30b" x="0" y="0" width="111" height="30">
+			<text><![CDATA[codigo]]></text>
+			<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="576d56fe-3236-448e-b992-6199038d5fb2"/>
+		</element>
+		<element kind="staticText" uuid="f763d921-5031-42f8-8f4e-8e92108138c0" x="111" y="0" width="111" height="30">
+			<text><![CDATA[cantidad]]></text>
+			<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="75ce96fa-f7d9-4d96-b7ac-5b240389c597"/>
+		</element>
+		<element kind="staticText" uuid="c85c4b83-480c-46dd-b021-30fb9df113b8" x="222" y="0" width="111" height="30">
+			<text><![CDATA[valortotal]]></text>
+			<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="1cb9a8f4-2215-4b63-bd1c-ecc63c7c98f0"/>
+		</element>
+	</columnHeader>
+	<detail>
+		<band height="30" splitType="Stretch">
+			<element kind="textField" uuid="d446ce89-d744-44d2-b03e-4cf1cf6fbec2" x="0" y="0" width="111" height="30">
+				<expression><![CDATA[$F{codigo}]]></expression>
+				<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="576d56fe-3236-448e-b992-6199038d5fb2"/>
+			</element>
+			<element kind="textField" uuid="e4455569-35d7-432e-a1b4-b5a2a826798c" x="111" y="0" width="111" height="30">
+				<expression><![CDATA[$F{cantidad}]]></expression>
+				<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="75ce96fa-f7d9-4d96-b7ac-5b240389c597"/>
+			</element>
+			<element kind="textField" uuid="fccea6e1-8f91-4ada-9499-541bc2e05031" x="222" y="0" width="111" height="30" pattern="#,##0.###;#,##0.###-">
+				<expression><![CDATA[$F{valortotal}]]></expression>
+				<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="1cb9a8f4-2215-4b63-bd1c-ecc63c7c98f0"/>
+			</element>
+		</band>
+	</detail>
+	<columnFooter height="45" splitType="Stretch"/>
+	<pageFooter height="54" splitType="Stretch"/>
+	<summary height="42" splitType="Stretch"/>
+</jasperReport>

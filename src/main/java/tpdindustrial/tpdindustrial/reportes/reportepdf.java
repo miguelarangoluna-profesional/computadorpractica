@@ -1,7 +1,3 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package tpdindustrial.tpdindustrial.reportes;
 
 import java.io.InputStream;
@@ -14,10 +10,6 @@ import net.sf.jasperreports.engine.data.JRBeanCollectionDataSource;
 import org.springframework.core.io.ClassPathResource;
 import org.springframework.stereotype.Service;
 
-/**
- *
- * @author USUARIO
- */
 @Service
 public class reportepdf {
     // Genera un PDF desde un archivo .jasper que ya está compilado

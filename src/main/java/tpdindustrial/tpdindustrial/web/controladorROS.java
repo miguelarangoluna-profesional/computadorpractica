@@ -6,14 +6,21 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import tpdindustrial.tpdindustrial.reportes.imprimereporte;
+import tpdindustrial.tpdindustrial.reportes.reportepdf;
 import tpdindustrial.tpdindustrial.service.relacionofertaservicioService;
 
 @Controller
 @Slf4j
 public class controladorROS {
 
+    
     @Autowired
     private relacionofertaservicioService rosservice;
+    
+    @Autowired
+    private imprimereporte printreport;
+    
 
     @GetMapping("/detalleoferta/{codigo}")
     public String detalleofert(@PathVariable("codigo") Integer codigo,
@@ -29,5 +36,14 @@ public class controladorROS {
         modelo.addAttribute("detalleoferta", listaros);
         modelo.addAttribute("total", t);
         return "detalleofertaservicio/listardetalleofertaservicio";
+    }
+    
+    @GetMapping("/imprimirreporte")
+    public String printreport(){
+        var datos = rosservice.listarelaconofertaservicio();
+        datos.forEach(System.out::println);
+        printreport.printreportdetalle(datos);
+        System.out.println("reporte generado correctamente; este mensaje es de la clase controladorROS");
+        return "redirect:/";
     }
 }
