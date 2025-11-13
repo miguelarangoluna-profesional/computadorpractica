@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+
+    <head>
+        <title>Formulario persona</title>
+        <meta charset="UTF-8"/>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    </head>
+    <body>
+        <h1>Formulario persona</h1>
+        <div class="campo2">
+            <form th:action="@{/guardarpersona}" th:object="${persona}" method="post">
+                <input type="hidden" th:field="*{codigo}" />
+
+                <div>
+                    <label>Nombres</label>
+                    <input type="text" th:field="*{nombre}" />
+                    <span th:if="${#fields.hasErrors('nombre')}" th:errors="*{nombre}"></span>
+                </div>
+
+                <div>
+                    <label>Apellidos</label>
+                    <input type="text" th:field="*{apellido}" />
+                </div>
+
+                <div>
+                    <label>Correo</label>
+                    <input type="email" th:field="*{correo}" />
+                </div>
+
+                <div>
+                    <label>Dirección</label>
+                    <input type="text" th:field="*{direccion}" />
+                </div>
+
+                <div>
+                    <label>Celular</label>
+                    <input type="number" th:field="*{celular}" />
+                </div>
+
+                <input type="submit" value="Guardar" />
+            </form>
+        </div>
+    </body>
+</html>

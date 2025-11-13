@@ -1,8 +1,9 @@
 <!-- Created with Jaspersoft Studio version 7.0.3.final using JasperReports Library version 7.0.3-41034ca841d452f3305ba55b9042260aaa1ab5dd  -->
 <jasperReport name="cotizacion" language="java" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="b14d2482-0566-48b7-bd7d-9566cbdd112e">
 	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="TPDINDUSTRIAL.jrdax"/>
-	<property name="com.jaspersoft.studio.data.sql.tables" value="cmVsYWNpb25vZmVydGFzZXJ2aWNpbyAsMTUsMTUsNTU4MzZhOTAtYjg1ZC00YzI0LTg5YWYtYzYz&#xa;MjlmNDU1ZTZhOw=="/>
+	<property name="com.jaspersoft.studio.data.sql.tables" value="cmVsYWNpb25vZmVydGFzZXJ2aWNpbyAsMjQsNDEsYjgxMDhlMjUtYjNhYS00YjBkLWEzOWQtNjdj&#xa;NTJiOTQyN2UzOw=="/>
 	<parameter name="Titulo" class="java.lang.String"/>
+	<parameter name="fecha" class="java.lang.String"/>
 	<query language="sql"><![CDATA[SELECT codigo,
 	cantidad,
 	valortotal
@@ -23,7 +24,7 @@ FROM relacionofertaservicio]]></query>
 		<property name="com.jaspersoft.studio.field.tree.path" value="relacionofertaservicio"/>
 	</field>
 	<background splitType="Stretch"/>
-	<title height="170" splitType="Stretch">
+	<title height="189" splitType="Stretch">
 		<element kind="image" uuid="a041277a-e499-4637-9749-4ce6901fd9f1" x="0" y="0" width="78" height="79">
 			<expression><![CDATA["LOGO TPDI.png"]]></expression>
 		</element>
@@ -46,42 +47,70 @@ FROM relacionofertaservicio]]></query>
 		<element kind="staticText" uuid="1c3390ed-267a-4376-b800-207780c8cdf7" x="440" y="71" width="115" height="21" fontSize="16.0" bold="true" hTextAlign="Center">
 			<text><![CDATA[Cotización:]]></text>
 		</element>
-		<element kind="textField" uuid="06526d44-3b8e-44bf-8e14-020f40caeeb9" x="0" y="150" width="100" height="20" fontSize="12.0" hTextAlign="Left" vTextAlign="Middle">
+		<element kind="textField" uuid="06526d44-3b8e-44bf-8e14-020f40caeeb9" x="0" y="150" width="380" height="20" fontSize="12.0" hTextAlign="Left" vTextAlign="Middle">
 			<expression><![CDATA[$P{Titulo}]]></expression>
+		</element>
+		<element kind="textField" uuid="5e8eabfd-9682-4e55-bcfb-34fed7cf1f3a" x="440" y="150" width="100" height="20" vTextAlign="Middle">
+			<expression><![CDATA[$P{fecha}]]></expression>
 		</element>
 	</title>
 	<pageHeader height="35" splitType="Stretch"/>
 	<columnHeader height="30" splitType="Stretch">
-		<element kind="staticText" uuid="c292d7b7-9f36-444e-adf0-b6fed6f0d30b" x="0" y="0" width="111" height="30">
-			<text><![CDATA[codigo]]></text>
+		<element kind="staticText" uuid="c292d7b7-9f36-444e-adf0-b6fed6f0d30b" x="0" y="0" width="111" height="30" bold="true" hTextAlign="Center" vTextAlign="Middle">
+			<text><![CDATA[CÓDIGO]]></text>
 			<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="576d56fe-3236-448e-b992-6199038d5fb2"/>
+			<box>
+				<pen lineWidth="1.0" lineStyle="Solid"/>
+			</box>
 		</element>
-		<element kind="staticText" uuid="f763d921-5031-42f8-8f4e-8e92108138c0" x="111" y="0" width="111" height="30">
-			<text><![CDATA[cantidad]]></text>
+		<element kind="staticText" uuid="f763d921-5031-42f8-8f4e-8e92108138c0" x="111" y="0" width="111" height="30" bold="true" hTextAlign="Center" vTextAlign="Middle">
+			<text><![CDATA[CANTIDAD]]></text>
 			<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="75ce96fa-f7d9-4d96-b7ac-5b240389c597"/>
+			<box>
+				<pen lineWidth="1.0" lineStyle="Solid"/>
+			</box>
 		</element>
-		<element kind="staticText" uuid="c85c4b83-480c-46dd-b021-30fb9df113b8" x="222" y="0" width="111" height="30">
-			<text><![CDATA[valortotal]]></text>
+		<element kind="staticText" uuid="c85c4b83-480c-46dd-b021-30fb9df113b8" x="222" y="0" width="111" height="30" bold="true" hTextAlign="Center" vTextAlign="Middle">
+			<text><![CDATA[VALOR TOTAL]]></text>
 			<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="1cb9a8f4-2215-4b63-bd1c-ecc63c7c98f0"/>
+			<box>
+				<pen lineWidth="1.0" lineStyle="Solid"/>
+			</box>
 		</element>
 	</columnHeader>
 	<detail>
 		<band height="30" splitType="Stretch">
-			<element kind="textField" uuid="d446ce89-d744-44d2-b03e-4cf1cf6fbec2" x="0" y="0" width="111" height="30">
+			<element kind="textField" uuid="d446ce89-d744-44d2-b03e-4cf1cf6fbec2" x="0" y="0" width="111" height="30" hTextAlign="Center" vTextAlign="Middle">
 				<expression><![CDATA[$F{codigo}]]></expression>
 				<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="576d56fe-3236-448e-b992-6199038d5fb2"/>
+				<box>
+					<pen lineWidth="1.0" lineStyle="Solid"/>
+				</box>
 			</element>
-			<element kind="textField" uuid="e4455569-35d7-432e-a1b4-b5a2a826798c" x="111" y="0" width="111" height="30">
+			<element kind="textField" uuid="e4455569-35d7-432e-a1b4-b5a2a826798c" x="111" y="0" width="111" height="30" hTextAlign="Center" vTextAlign="Middle">
 				<expression><![CDATA[$F{cantidad}]]></expression>
 				<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="75ce96fa-f7d9-4d96-b7ac-5b240389c597"/>
+				<box>
+					<pen lineWidth="1.0" lineStyle="Solid"/>
+				</box>
 			</element>
-			<element kind="textField" uuid="fccea6e1-8f91-4ada-9499-541bc2e05031" x="222" y="0" width="111" height="30" pattern="#,##0.###;#,##0.###-">
+			<element kind="textField" uuid="fccea6e1-8f91-4ada-9499-541bc2e05031" x="222" y="0" width="111" height="30" pattern="#,##0.###;#,##0.###-" hTextAlign="Center" vTextAlign="Middle">
 				<expression><![CDATA[$F{valortotal}]]></expression>
 				<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="1cb9a8f4-2215-4b63-bd1c-ecc63c7c98f0"/>
+				<box>
+					<pen lineWidth="1.0" lineStyle="Solid"/>
+				</box>
 			</element>
 		</band>
 	</detail>
-	<columnFooter height="45" splitType="Stretch"/>
-	<pageFooter height="54" splitType="Stretch"/>
-	<summary height="42" splitType="Stretch"/>
+	<columnFooter height="59" splitType="Stretch"/>
+	<pageFooter height="39" splitType="Stretch">
+		<element kind="staticText" uuid="b995e923-9453-47a2-b6ed-2e38e60f10f2" x="180" y="2" width="250" height="20" bold="true" hTextAlign="Center" vTextAlign="Middle">
+			<text><![CDATA[miguel.arango@tpdindustrial.co]]></text>
+		</element>
+		<element kind="staticText" uuid="1d9d5338-02c3-4be6-b7a0-ea2fbf795cfc" x="120" y="22" width="340" height="17" hTextAlign="Center" vTextAlign="Middle">
+			<text><![CDATA[Carrera 46 # 80-74. Local 104. Celular: 3505953644]]></text>
+		</element>
+	</pageFooter>
+	<summary height="36" splitType="Stretch"/>
 </jasperReport>

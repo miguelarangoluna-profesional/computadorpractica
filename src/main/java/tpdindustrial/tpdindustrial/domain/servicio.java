@@ -19,13 +19,13 @@ public class servicio implements Serializable{
     public static final long SerialversionUID=1l;
     
     @Id
-    @Column(name = "codigo")
+    @Column(name = "codigoservicio")
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
     private Integer codigo;
     
     private String descripcion;
     
-    private LocalDate fechacreacion;
+    private String fechacreacion;
     
     private Integer valorunitario;
     

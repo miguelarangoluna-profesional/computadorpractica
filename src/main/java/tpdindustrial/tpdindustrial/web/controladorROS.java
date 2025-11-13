@@ -1,5 +1,7 @@
 package tpdindustrial.tpdindustrial.web;
 
+import java.util.HashMap;
+import java.util.Map;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -40,9 +42,12 @@ public class controladorROS {
     
     @GetMapping("/imprimirreporte")
     public String printreport(){
-        var datos = rosservice.listarelaconofertaservicio();
+        int codigo = 1;
+        var datos2 = rosservice.listardetalleofertaservicio(codigo);
+        var datos = rosservice.consultageneraldetalleoferta(codigo);
+        rosservice.convertirconsultageneraldetalleoferta(datos);
         datos.forEach(System.out::println);
-        printreport.printreportdetalle(datos);
+//        printreport.printreportdetalle(datos);
         System.out.println("reporte generado correctamente; este mensaje es de la clase controladorROS");
         return "redirect:/";
     }

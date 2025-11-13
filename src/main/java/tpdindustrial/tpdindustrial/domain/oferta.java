@@ -15,7 +15,7 @@ public class oferta implements Serializable {
     public static final long SerialversionUID=1l;
     
     @Id
-    @Column(name = "codigo")
+    @Column(name = "codigooferta")
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
     private Integer codigo;
     
@@ -23,16 +23,16 @@ public class oferta implements Serializable {
     
     private String formapago;
     
-    private LocalDate fechacreacion;
+    private String fechacreacion;
     
     private String codicioncomercial;
     
-    @JoinColumn(name = "cod_empleado",referencedColumnName = "codigo")
+    @JoinColumn(name = "cod_empleado",referencedColumnName = "codigoempleado")
     @ManyToOne()
     private empleado empleado;
      
        
-    @JoinColumn(name = "cod_cliente",referencedColumnName = "codigo")
+    @JoinColumn(name = "cod_cliente",referencedColumnName = "codigocliente")
     @ManyToOne()
     private cliente cliente;
             

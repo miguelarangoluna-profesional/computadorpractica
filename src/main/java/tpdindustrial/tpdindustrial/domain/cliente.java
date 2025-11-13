@@ -15,7 +15,7 @@ public class cliente implements Serializable{
     public static final long SerialversionUId = 1l;
     
     @Id
-    @Column(name = "codigo")
+    @Column(name = "codigocliente")
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
     private Integer codigo;
     

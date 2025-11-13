@@ -19,7 +19,7 @@ public class persona implements Serializable {
     
     
     @Id
-    @Column(name = "codigo")
+    @Column(name = "codigopersona")
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
     private Integer codigo;
     

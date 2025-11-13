@@ -22,6 +22,10 @@ public interface relacionofertaservicioService {
     
     //metodos personalizados
     
+    public List<Object[]> consultageneraldetalleoferta(int codigo);
+    
+    public void convertirconsultageneraldetalleoferta(List<Object[]> ob);
+    
     public relacionofertaservicio buscarelacionofertaservicio(relacionofertaservicio ros);
     
     public void detalleofertaservicioclienteempleado(List<Object> carrito,int code_cliente,int code_empleado);

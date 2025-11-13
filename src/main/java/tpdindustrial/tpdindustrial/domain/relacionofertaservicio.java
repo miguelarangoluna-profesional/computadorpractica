@@ -18,7 +18,7 @@ public class relacionofertaservicio implements Serializable {
     public static final long SerialversionUID=1l;
     
     @Id
-    @Column(name = "codigo")
+    @Column(name = "codigorelacionofertaservicio")
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
     private Integer codigo;
     
@@ -26,11 +26,11 @@ public class relacionofertaservicio implements Serializable {
     
     private Double valortotal;
     
-    @JoinColumn(name = "cod_oferta",referencedColumnName = "codigo")
+    @JoinColumn(name = "cod_oferta",referencedColumnName = "codigooferta")
     @ManyToOne
     private oferta oferta;
     
-    @JoinColumn(name = "cod_servicio",referencedColumnName = "codigo")
+    @JoinColumn(name = "cod_servicio",referencedColumnName = "codigoservicio")
     @ManyToOne
     private servicio servicio;
     
