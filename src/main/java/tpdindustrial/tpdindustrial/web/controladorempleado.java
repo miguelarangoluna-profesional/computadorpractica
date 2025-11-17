@@ -1,4 +1,3 @@
-
 package tpdindustrial.tpdindustrial.web;
 
 import jakarta.validation.Valid;
