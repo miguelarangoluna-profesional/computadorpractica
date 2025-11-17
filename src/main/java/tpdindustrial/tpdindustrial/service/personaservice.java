@@ -19,4 +19,10 @@ public interface personaservice {
     public void eliminarpersona(persona p);
     
     public persona buscarpersona(persona p);
+    
+    //consultas practicas
+    
+    public List<persona> buscarpornombre(String nombre);
+    
+    
 }

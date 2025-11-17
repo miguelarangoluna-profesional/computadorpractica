@@ -54,4 +54,12 @@ public interface relacionofertaservicioDAO extends JpaRepository<relacionofertas
                  	 oferta.codigooferta =:codeoferta
                  """,nativeQuery = true)
     public List<Object[]> consultadetalledelaoferta(@Param("codeoferta") int codigo);
+    
+      
+    
+    public List<relacionofertaservicio> findByOfertaCodigo_EmpleadoCodigo_Codigo(Integer codigo);
+    
+
+    
+    
 }

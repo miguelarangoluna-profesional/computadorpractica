@@ -17,7 +17,13 @@
             <a th:text="${'Agregar empleado'}" th:href="@{/addempleado}"></a>
             <a th:href="@{/}">Volver</a>
         </div>
-
+        
+        <p th:text="${anuncio}"></p>
+        <form th:action="@{/buscarcliente}" method="get">
+            <p>Buscar listados de clientes por empleados</p>
+            <input type="text" name="razonsocial"/>
+            <input type="submit" value="Buscar por cliente"/>
+        </form>
         <div th:if="${listaempleados != null and !listaempleados.empty}">
             <table border="1">
                 <thead>

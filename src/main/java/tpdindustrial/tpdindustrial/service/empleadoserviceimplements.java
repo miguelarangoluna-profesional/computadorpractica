@@ -45,4 +45,11 @@ public class empleadoserviceimplements implements empleadoservice {
         return edao.findById(e.getCodigo()).orElse(null);
     }
     
+    //consultas especiales
+
+    @Override
+    public List<empleado> buscarporempresa(String nombre) {
+        return edao.findByListaofertas_Cliente_Razonsocial(nombre);
+    }
+    
 }

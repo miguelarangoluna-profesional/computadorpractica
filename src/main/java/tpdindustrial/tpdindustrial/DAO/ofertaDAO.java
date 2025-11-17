@@ -12,5 +12,4 @@ import tpdindustrial.tpdindustrial.domain.oferta;
  * @author USUARIO
  */
 public interface ofertaDAO extends JpaRepository<oferta, Integer> {
-    
 }

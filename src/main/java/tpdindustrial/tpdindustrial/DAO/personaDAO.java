@@ -4,6 +4,7 @@
  */
 package tpdindustrial.tpdindustrial.DAO;
 
+import java.util.List;
 import org.springframework.data.jpa.repository.JpaRepository;
 import tpdindustrial.tpdindustrial.domain.persona;
 
@@ -12,5 +13,7 @@ import tpdindustrial.tpdindustrial.domain.persona;
  * @author USUARIO
  */
 public interface personaDAO extends JpaRepository<persona,Integer>{
+    
+    public List<persona> findByNombre(String nombre);
     
 }

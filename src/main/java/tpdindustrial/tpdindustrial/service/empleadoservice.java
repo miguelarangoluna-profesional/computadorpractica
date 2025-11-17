@@ -1,7 +1,4 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Interface.java to edit this template
- */
+
 package tpdindustrial.tpdindustrial.service;
 
 import java.util.List;
@@ -19,4 +16,9 @@ public interface empleadoservice {
     public void eliminarempleado(empleado e);
     
     public empleado buscarempleado(empleado e);
+    
+    //Consultas especiales
+    
+    public List<empleado> buscarporempresa(String nombre);
+    
 }

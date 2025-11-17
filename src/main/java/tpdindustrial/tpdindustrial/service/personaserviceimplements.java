@@ -36,4 +36,13 @@ public class personaserviceimplements implements personaservice{
     public persona buscarpersona(persona p) {
         return pdao.findById(p.getCodigo()).orElse(null);
     }    
+    
+    //comienza la practicas desde aquí
+
+    @Override
+    public List<persona> buscarpornombre(String nombre) {
+        return pdao.findByNombre(nombre);
+    }
+    
+    
 }
